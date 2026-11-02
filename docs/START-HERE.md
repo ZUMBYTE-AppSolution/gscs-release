@@ -47,3 +47,5 @@ Dienstinstallationen verwenden signierte Updatepakete. Lokale Gameserver und lau
 Portable Installationen: GSCS stoppen, das neue Paket in einen neuen Programmordner entpacken und den unveränderten Datenordner weiterverwenden. Docker: neues Image laden und den GSCS-Container mit denselben Datenordnern neu erstellen.
 
 Vor einem Systemwechsel einen verschlüsselten Export anlegen. Alle Server und Agents vor dem Import stoppen. Vorherige Dateien und ein Rücksicherungsarchiv bleiben erhalten. Nach einem Import GSCS neu starten und Node-Zuordnungen prüfen. Hytale-/Software-Lizenzen können auf dem Ziel eine erneute Anmeldung bzw. Aktivierung benötigen.
+
+Unter Unraid für Spieldateien einen direkten Pool-/Datenträgerpfad verwenden, etwa **/mnt/cache/appdata/gscs** oder **/mnt/disk1/appdata/gscs**. Ältere 32-Bit-Spiele können über **/mnt/user** wegen der Dateisystem-Inodes fehlschlagen. Datenpfad und Host-Datenpfad im Unraid-Template müssen übereinstimmen.

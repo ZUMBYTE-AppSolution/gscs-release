@@ -6,6 +6,11 @@ on:
         description: Existing draft release tag
         required: true
         type: string
+      role:
+        description: Image role to export
+        default: all
+        type: choice
+        options: [all, master, node, runtime]
 permissions:
   contents: write
   packages: read
@@ -25,6 +30,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Export and attach image
+        if: inputs.role == 'all' || inputs.role == matrix.role
         env:
           TAG: ${{ inputs.tag }}
           GH_TOKEN: ${{ github.token }}
@@ -47,4 +53,4 @@ jobs:
             docker save "$IMAGE" | gzip -1 > "$FILE"
           fi
           sha256sum "$FILE" > "$FILE.sha256"
-          gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" "$FILE" "$FILE.sha256"
+          gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber "$FILE" "$FILE.sha256"

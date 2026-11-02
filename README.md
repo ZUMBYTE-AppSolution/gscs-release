@@ -44,3 +44,5 @@ openssl dgst -sha256 -verify release-public.pem -signature gscs-manifest.sig gsc
 Dienstinstallationen können Updates im Webinterface vorbereiten und übernehmen. Vorher alle Gameserver und Aufträge beenden. Portable Installationen durch ein neu entpacktes Paket mit demselben Datenordner aktualisieren; Docker durch ein neues Image mit denselben Datenordnern. Vor Versions- oder Systemwechseln einen verschlüsselten Systemexport und eine externe Datensicherung anlegen.
 
 Spielnamen, Logos und Spielserver gehören ihren jeweiligen Rechteinhabern. Es werden keine proprietären Spielserverdateien verteilt. GSCS wird unter einer Nutzungslizenz angeboten; dieses Repository enthält Download- und Installationsmaterial.
+
+Unter Unraid für Spieldateien einen direkten Pool-/Datenträgerpfad verwenden, etwa **/mnt/cache/appdata/gscs** oder **/mnt/disk1/appdata/gscs**. Ältere 32-Bit-Spiele können über **/mnt/user** wegen der Dateisystem-Inodes fehlschlagen. Datenpfad und Host-Datenpfad im Unraid-Template müssen übereinstimmen.
