@@ -1,0 +1,14 @@
+FROM eclipse-temurin:25-jre-noble
+ARG TARGETARCH
+LABEL org.opencontainers.image.title="GSCS game runtime" \
+ org.opencontainers.image.source="https://github.com/ZUMBYTE-AppSolution/gscs-release"
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates libcurl4t64 libatomic1 libpulse0 libsdl2-2.0-0 \
+ && if [ "$TARGETARCH" = amd64 ]; then apt-get install -y --no-install-recommends lib32gcc-s1 lib32stdc++6; fi \
+ && rm -rf /var/lib/apt/lists/* \
+ && useradd --uid 10000 --create-home --home-dir /home/container --shell /usr/sbin/nologin gameserver
+COPY runtime-entrypoint.sh /usr/local/bin/gscs-game-entrypoint
+RUN chmod 0755 /usr/local/bin/gscs-game-entrypoint
+WORKDIR /home/container
+ENTRYPOINT ["/usr/local/bin/gscs-game-entrypoint"]
+# GSCS supplies the game executable and arguments. No game files or credentials are baked into this image.
+USER 10000:10000

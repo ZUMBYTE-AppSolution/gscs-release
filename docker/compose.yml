@@ -1,0 +1,49 @@
+name: gscs
+services:
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gscs
+      POSTGRES_USER: gscs
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes: ["database:/var/lib/postgresql"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gscs -d gscs"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  master:
+    image: ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.1
+    restart: unless-stopped
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports: ["5080:5080"]
+    environment:
+      GSCS_ROLE: master
+      GSCS_DB_HOST: postgres
+      GSCS_DB_PASSWORD_FILE: /run/secrets/db_password
+      GSCS_SETUP_TOKEN_FILE: /run/secrets/setup_token
+      GSCS_LOCAL_NODE: "true"
+      GSCS_DOCKER_QUERY_HOST: host.docker.internal
+      GSCS_DOCKER_HOST_ROOT: ${GSCS_HOST_DATA:?Set the absolute host path to the GSCS data directory}
+    secrets: [db_password, setup_token]
+    volumes:
+      - ${GSCS_HOST_DATA}:/var/lib/gscs
+      # Required only when this master manages sibling game containers.
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:5080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+secrets:
+  db_password:
+    file: ./secrets/db_password
+  setup_token:
+    file: ./secrets/setup_token
+volumes:
+  database:

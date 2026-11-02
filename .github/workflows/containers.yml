@@ -1,0 +1,72 @@
+name: Publish signed GSCS containers
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing draft release tag
+        required: true
+        type: string
+permissions:
+  contents: write
+  packages: write
+concurrency:
+  group: gscs-containers-${{ inputs.tag }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        role: [master, node, runtime]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Validate tag and prepare signed packages
+        env:
+          TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+          ROLE: ${{ matrix.role }}
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$ ]] || exit 2
+          echo "VERSION=${TAG#v}" >> "$GITHUB_ENV"
+          case "$ROLE" in
+            master) echo 'IMAGE=gscs' >> "$GITHUB_ENV";;
+            node) echo 'IMAGE=gscs-node' >> "$GITHUB_ENV";;
+            runtime) echo 'IMAGE=gscs-runtime' >> "$GITHUB_ENV";;
+          esac
+          if [[ "$ROLE" != runtime ]]; then
+            mkdir downloads
+            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --dir downloads --pattern '*linux-*.zip' --pattern 'gscs-manifest.*'
+            python3 scripts/prepare-packages.py downloads "$TAG"
+          fi
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build master or node
+        if: matrix.role != 'runtime'
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
+        with:
+          context: .
+          file: docker/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          build-args: GSCS_ROLE=${{ matrix.role }}
+          tags: ghcr.io/zumbyte-appsolution/${{ env.IMAGE }}:${{ env.VERSION }}
+          push: true
+          provenance: false
+      - name: Build game runtime
+        if: matrix.role == 'runtime'
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
+        with:
+          context: docker
+          file: docker/Dockerfile.runtime
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/zumbyte-appsolution/gscs-runtime:${{ env.VERSION }}
+            ghcr.io/zumbyte-appsolution/gscs-runtime:0.1.0
+          push: true
+          provenance: false
