@@ -21,9 +21,9 @@ Die Dienstinstaller sowie deren Update-/Rollback-Abläufe sind in dieser Alpha n
 
 ## Docker und Unraid
 
-Images: `ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.1`, `gscs-node:0.1.0-alpha.1` und `gscs-runtime:0.1.0-alpha.1` (amd64/arm64).
+Die Docker-Images werden als Download-Dateien für x64 und ARM64 verteilt. Eine Anmeldung an einer Container-Registry ist nicht erforderlich. Die Image-Namen im Compose-Paket werden durch `docker load` lokal bereitgestellt.
 
-Das Docker-Bundle entpacken, **bash prepare.sh** ausführen, in **.env** den absoluten Datenpfad festlegen und **docker compose up -d** starten. PostgreSQL läuft separat. Unter **http://SERVER-IP:5080** die Einrichtung mit dem angezeigten Code fortsetzen.
+Das Docker-Bundle entpacken, zuerst **bash load-images.sh** und danach **bash prepare.sh** ausführen, in **.env** den absoluten Datenpfad festlegen und **docker compose up -d** starten. PostgreSQL läuft separat. Unter **http://SERVER-IP:5080** die Einrichtung mit dem angezeigten Code fortsetzen.
 
 Für Unraid das [Template](docker/unraid/gscs.xml) verwenden. PostgreSQL sowie die beiden Secret-Dateien müssen vorhanden sein. Das Vorbereitungsskript im Docker-Bundle erzeugt die Dateien. Der Docker-Socket wird für die Verwaltung von Spielcontainern benötigt und gewährt dem Panel Hostrechte. Alternativ Master ohne Socket mit separatem Node betreiben.
 

@@ -16,6 +16,7 @@ services:
       retries: 30
   master:
     image: ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.1
+    pull_policy: never
     restart: unless-stopped
     extra_hosts: ["host.docker.internal:host-gateway"]
     depends_on:

@@ -26,7 +26,7 @@ Die Dienstinstaller sind Alpha und noch nicht auf sauberen Windows-/Debian-Refer
 
 ## Docker / Unraid
 
-Das **docker.zip** enthält Compose-Dateien, Vorbereitungsskript und das Unraid-Template. `bash prepare.sh` erzeugt geschützte Passwortdateien. Anschließend `GSCS_HOST_DATA` auf den absoluten Host-Datenpfad setzen und `docker compose up -d` ausführen. PostgreSQL wird als separater Container gestartet. Die Einrichtung geht unter **http://SERVER-IP:5080** weiter.
+Das **docker.zip** enthält Compose-Dateien, Image-Loader und das Unraid-Template. Zuerst **bash load-images.sh** ausführen: signierte Image-Prüfsummen werden geprüft und die passenden Docker-Dateien von diesem Release geladen. Danach `bash prepare.sh` erzeugt geschützte Passwortdateien. Anschließend `GSCS_HOST_DATA` auf den absoluten Host-Datenpfad setzen und `docker compose up -d` ausführen. PostgreSQL wird als separater Container gestartet. Die Einrichtung geht unter **http://SERVER-IP:5080** weiter.
 
 Der Master kann mit oder ohne lokale Spielausführung betrieben werden. Nur für die Verwaltung von Spielcontainern wird der Docker-Socket benötigt. Datenordner und Host-Pfad für Spielcontainer müssen übereinstimmen. Ohne Socket einen separaten Node verwenden.
 
