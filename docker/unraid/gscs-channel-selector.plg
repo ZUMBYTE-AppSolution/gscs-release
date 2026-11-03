@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PLUGIN name="gscs-channel-selector" Title="GSCS Kanalwahl" author="ZUMBYTE-AppSolution" version="2026.11.03" pluginURL="https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/docker/unraid/gscs-channel-selector.plg" min="7.2.0" icon="server" support="https://github.com/ZUMBYTE-AppSolution/gscs-release/issues">
+<PLUGIN name="gscs-channel-selector" Title="GSCS Kanalwahl" author="ZUMBYTE-AppSolution" version="2026.11.03b" pluginURL="https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/docker/unraid/gscs-channel-selector.plg" min="7.2.0" icon="server" support="https://github.com/ZUMBYTE-AppSolution/gscs-release/issues">
 <DESCRIPTION>GSCS-Kanalauswahl direkt unter Docker / Container hinzufügen. Repository und Spielserver-Image bleiben gemeinsam auf dem gewählten Kanal.</DESCRIPTION>
 <FILE Name="/usr/local/emhttp/plugins/gscs-channel-selector/GscsChannelSelector.page"><INLINE><![CDATA[Menu="Buttons:80"
 Title="GSCS Kanalwahl"
@@ -85,9 +85,89 @@ Markdown="false"
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 ]]></INLINE></FILE>
+<FILE Name="/usr/local/emhttp/plugins/gscs-channel-selector/gscs.xml"><INLINE><![CDATA[<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>GSCS</Name>
+  <Repository>ghcr.io/zumbyte-appsolution/gscs:alpha</Repository>
+  <Registry>https://github.com/ZUMBYTE-AppSolution/gscs-release/pkgs/container/gscs</Registry>
+  <Network>host</Network>
+  <Privileged>false</Privileged>
+  <ExtraParams />
+  <Support>https://github.com/ZUMBYTE-AppSolution/gscs-release/issues</Support>
+  <Project>https://github.com/ZUMBYTE-AppSolution/gscs-release</Project>
+  <Overview>GSCS mit interner PostgreSQL-Datenbank, SteamCMD, Java und Wine in einem Container. Ersten Administrator und Lizenz im Webinterface einrichten. Ohne Lizenz: ein Gameserver auf localhost. Ein Node verwendet dasselbe Image mit GSCS_ROLE=node und benötigt kein Webinterface und keine Verwaltungsdatenbank.</Overview>
+  <WebUI>http://[IP]:[PORT:5080]/</WebUI>
+  <Icon>https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/GSCS-256.png</Icon>
+  <Config Name="Webinterface" Target="5080" Default="5080" Mode="tcp" Description="GSCS Webinterface" Type="Port" Display="always" Required="true" Mask="false">5080</Config>
+  <Config Name="GSCS Daten" Target="/var/lib/gscs" Default="/mnt/disk1/appdata/gscs" Mode="rw" Description="Dauerhafte Konfiguration, Spieldateien und Backups" Type="Path" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+  <Config Name="Rolle" Target="GSCS_ROLE" Default="master" Mode="" Description="Master mit Webinterface" Type="Variable" Display="advanced" Required="true" Mask="false">master</Config>
+  <Config Name="Lokale Ausführung" Target="GSCS_LOCAL_NODE" Default="true" Mode="" Description="localhost als Ausführungsnode aktivieren" Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+  <Config Name="Host-Datenpfad" Target="GSCS_DOCKER_HOST_ROOT" Default="/mnt/disk1/appdata/gscs" Mode="" Description="Muss exakt dem Hostpfad von GSCS Daten entsprechen" Type="Variable" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+  <Config Name="Spielserver-Image" Target="GSCS_CONTAINER_IMAGE" Default="ghcr.io/zumbyte-appsolution/gscs:alpha" Mode="" Description="Wird bei der Kanalauswahl automatisch mit dem GSCS-Image geändert." Type="Variable" Display="advanced" Required="true" Mask="false">ghcr.io/zumbyte-appsolution/gscs:alpha</Config>
+  <Config Name="Docker-Verwaltung" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Optional: Docker-Socket für Spielcontainer. Gewährt Hostrechte." Type="Path" Display="advanced" Required="false" Mask="false">/var/run/docker.sock</Config>
+  <Config Name="Webadresse" Target="GSCS_URL" Default="http://0.0.0.0:5080" Mode="" Description="Bind-Adresse und Port des Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false">http://0.0.0.0:5080</Config>
+  <Config Name="Master-Adresse" Target="GSCS_MASTER_URL" Default="" Mode="" Description="Nur für Rolle node: HTTPS-Adresse des Masters" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Node-ID" Target="GSCS_NODE_ID" Default="" Mode="" Description="Nur für Rolle node: Registrierung aus dem Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Node-Schlüsseldatei" Target="GSCS_AGENT_KEY_FILE" Default="" Mode="" Description="Nur für Rolle node: geschützte Datei mit Registrierungsschlüssel" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <DefaultTagDescription>Alpha · neue Funktionen in Erprobung</DefaultTagDescription>
+  <Branch>
+    <Tag>beta</Tag>
+    <TagDescription>Beta · Vorabversionen</TagDescription>
+    <Config Name="Webinterface" Target="5080" Default="5080" Mode="tcp" Description="GSCS Webinterface" Type="Port" Display="always" Required="true" Mask="false">5080</Config>
+    <Config Name="GSCS Daten" Target="/var/lib/gscs" Default="/mnt/disk1/appdata/gscs" Mode="rw" Description="Dauerhafte Konfiguration, Spieldateien und Backups" Type="Path" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+    <Config Name="Rolle" Target="GSCS_ROLE" Default="master" Mode="" Description="Master mit Webinterface" Type="Variable" Display="advanced" Required="true" Mask="false">master</Config>
+    <Config Name="Lokale Ausführung" Target="GSCS_LOCAL_NODE" Default="true" Mode="" Description="localhost als Ausführungsnode aktivieren" Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+    <Config Name="Host-Datenpfad" Target="GSCS_DOCKER_HOST_ROOT" Default="/mnt/disk1/appdata/gscs" Mode="" Description="Muss exakt dem Hostpfad von GSCS Daten entsprechen" Type="Variable" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+    <Config Name="Spielserver-Image" Target="GSCS_CONTAINER_IMAGE" Default="ghcr.io/zumbyte-appsolution/gscs:beta" Mode="" Description="Wird bei der Kanalauswahl automatisch mit dem GSCS-Image geändert." Type="Variable" Display="advanced" Required="true" Mask="false">ghcr.io/zumbyte-appsolution/gscs:beta</Config>
+    <Config Name="Docker-Verwaltung" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Optional: Docker-Socket für Spielcontainer. Gewährt Hostrechte." Type="Path" Display="advanced" Required="false" Mask="false">/var/run/docker.sock</Config>
+    <Config Name="Webadresse" Target="GSCS_URL" Default="http://0.0.0.0:5080" Mode="" Description="Bind-Adresse und Port des Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false">http://0.0.0.0:5080</Config>
+    <Config Name="Master-Adresse" Target="GSCS_MASTER_URL" Default="" Mode="" Description="Nur für Rolle node: HTTPS-Adresse des Masters" Type="Variable" Display="advanced" Required="false" Mask="false" />
+    <Config Name="Node-ID" Target="GSCS_NODE_ID" Default="" Mode="" Description="Nur für Rolle node: Registrierung aus dem Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false" />
+    <Config Name="Node-Schlüsseldatei" Target="GSCS_AGENT_KEY_FILE" Default="" Mode="" Description="Nur für Rolle node: geschützte Datei mit Registrierungsschlüssel" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  </Branch>
+  <Branch>
+    <Tag>release</Tag>
+    <TagDescription>Release · stabile Versionen</TagDescription>
+    <Config Name="Webinterface" Target="5080" Default="5080" Mode="tcp" Description="GSCS Webinterface" Type="Port" Display="always" Required="true" Mask="false">5080</Config>
+    <Config Name="GSCS Daten" Target="/var/lib/gscs" Default="/mnt/disk1/appdata/gscs" Mode="rw" Description="Dauerhafte Konfiguration, Spieldateien und Backups" Type="Path" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+    <Config Name="Rolle" Target="GSCS_ROLE" Default="master" Mode="" Description="Master mit Webinterface" Type="Variable" Display="advanced" Required="true" Mask="false">master</Config>
+    <Config Name="Lokale Ausführung" Target="GSCS_LOCAL_NODE" Default="true" Mode="" Description="localhost als Ausführungsnode aktivieren" Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+    <Config Name="Host-Datenpfad" Target="GSCS_DOCKER_HOST_ROOT" Default="/mnt/disk1/appdata/gscs" Mode="" Description="Muss exakt dem Hostpfad von GSCS Daten entsprechen" Type="Variable" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+    <Config Name="Spielserver-Image" Target="GSCS_CONTAINER_IMAGE" Default="ghcr.io/zumbyte-appsolution/gscs:release" Mode="" Description="Wird bei der Kanalauswahl automatisch mit dem GSCS-Image geändert." Type="Variable" Display="advanced" Required="true" Mask="false">ghcr.io/zumbyte-appsolution/gscs:release</Config>
+    <Config Name="Docker-Verwaltung" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Optional: Docker-Socket für Spielcontainer. Gewährt Hostrechte." Type="Path" Display="advanced" Required="false" Mask="false">/var/run/docker.sock</Config>
+    <Config Name="Webadresse" Target="GSCS_URL" Default="http://0.0.0.0:5080" Mode="" Description="Bind-Adresse und Port des Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false">http://0.0.0.0:5080</Config>
+    <Config Name="Master-Adresse" Target="GSCS_MASTER_URL" Default="" Mode="" Description="Nur für Rolle node: HTTPS-Adresse des Masters" Type="Variable" Display="advanced" Required="false" Mask="false" />
+    <Config Name="Node-ID" Target="GSCS_NODE_ID" Default="" Mode="" Description="Nur für Rolle node: Registrierung aus dem Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false" />
+    <Config Name="Node-Schlüsseldatei" Target="GSCS_AGENT_KEY_FILE" Default="" Mode="" Description="Nur für Rolle node: geschützte Datei mit Registrierungsschlüssel" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  </Branch>
+</Container>
+]]></INLINE></FILE>
 <FILE Run="/bin/bash"><INLINE><![CDATA[
 set -eu
-chmod 0644 /usr/local/emhttp/plugins/gscs-channel-selector/GscsChannelSelector.page /usr/local/emhttp/plugins/gscs-channel-selector/channels.js
+chmod 0644 /usr/local/emhttp/plugins/gscs-channel-selector/GscsChannelSelector.page /usr/local/emhttp/plugins/gscs-channel-selector/channels.js /usr/local/emhttp/plugins/gscs-channel-selector/gscs.xml
+templates=/boot/config/plugins/dockerMan/templates-user
+target=$templates/my-GSCS.xml
+backup=/boot/config/plugins/gscs-channel-selector/backups/$(date -u +%Y%m%dT%H%M%SZ)
+is_gscs() {
+ php -r '$x=@simplexml_load_file($argv[1]);exit($x && (string)$x->Name === "GSCS" && str_starts_with((string)$x->Repository,"ghcr.io/zumbyte-appsolution/gscs:") ? 0 : 1);' "$1" >/dev/null 2>&1
+}
+mkdir -p "$templates"
+if [ ! -f "$target" ]; then
+ source=/usr/local/emhttp/plugins/gscs-channel-selector/gscs.xml
+ for name in my-GSCS-alpha.xml my-GSCS-beta.xml my-GSCS-release.xml; do
+  if is_gscs "$templates/$name"; then source=$templates/$name;break;fi
+ done
+ cp -- "$source" "$target.gscs-new"
+ mv -- "$target.gscs-new" "$target"
+fi
+if is_gscs "$target"; then
+ for name in my-GSCS-alpha.xml my-GSCS-beta.xml my-GSCS-release.xml; do
+  if is_gscs "$templates/$name"; then
+   mkdir -p "$backup"
+   mv -- "$templates/$name" "$backup/$name"
+  fi
+ done
+fi
 printf 'GSCS-Kanalauswahl installiert.
 '
 ]]></INLINE></FILE>
@@ -96,7 +176,7 @@ set -eu
 folder=/usr/local/emhttp/plugins/gscs-channel-selector
 if [ -d "$folder" ]; then
  [ "$(realpath -e "$folder")" = "$folder" ] || exit 1
- rm -f -- "$folder/GscsChannelSelector.page" "$folder/channels.js"
+ rm -f -- "$folder/GscsChannelSelector.page" "$folder/channels.js" "$folder/gscs.xml"
  rmdir -- "$folder" 2>/dev/null || true
 fi
 ]]></INLINE></FILE>
