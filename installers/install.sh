@@ -23,9 +23,10 @@ if [[ -z $role ]];then
 fi
 [[ $role == master || $role == node ]] || { printf 'Ungültige Rolle.\n' >&2;exit 2; }
 if [[ $role == master && -z $local_node ]];then
- $non_interactive && { printf -- '--local-node true oder false angeben.\n' >&2;exit 2; }
- printf '0 Vorerst ohne Nodes\n1 Auch lokale Spielausführung\n2 Remote-Nodes später anbinden\n3 Lokale Ausführung und später Remote-Nodes\n';read -r -p 'Node-Plan [0]: ' choice
- case "$choice" in 1|3) local_node=true;;*) local_node=false;;esac
+ if $non_interactive;then local_node=true;else
+ printf '0 Vorerst ohne Nodes\n1 Auch lokale Spielausführung\n2 Remote-Nodes später anbinden\n3 Lokale Ausführung und später Remote-Nodes\n';read -r -p 'Node-Plan [1]: ' choice
+ case "$choice" in ''|1|3) local_node=true;;0|2) local_node=false;;*) exit 2;;esac
+ fi
 fi
 [[ $local_node == true || $local_node == false || $role == node ]] || exit 2
 case "$install_root:$data_root" in *$'\n'*|*'"'*|*'%'*) printf 'Unzulässiger Installationspfad.\n' >&2;exit 2;;esac

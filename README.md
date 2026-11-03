@@ -1,6 +1,6 @@
 # GSCS · Downloads und Installation
 
-[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.3) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
+[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.4) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
 
 GSCS verwaltet Gameserver unter Windows und Linux. Dies ist **Alpha-Software**.  [Funktionsstand](docs/FEATURES.md) und [Startanleitung](docs/START-HERE.md) beschreiben die Grenzen.
 
@@ -29,7 +29,7 @@ Für die Kanalauswahl direkt bei **Container hinzufügen** gibt es eine Vorlage 
 
 ## Vorlagen und Lizenz
 
-248 Profile mit kategorisierten Konfigurationsfeldern sind enthalten. Für eigene Definitionen gibt es einen Wizard, einen JSON-Editor und das [Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki). Erfolgreiche Live-Starts aller Spiele werden damit nicht behauptet.
+230 Profile mit kategorisierten Konfigurationsfeldern sind enthalten. Für eigene Definitionen gibt es einen Wizard, einen JSON-Editor und das [Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki). Erfolgreiche Live-Starts aller Spiele werden damit nicht behauptet.
 
 Ohne Lizenz ist ein eigener Gameserver auf localhost möglich. Kostenpflichtige Lizenzen sind derzeit nicht erhältlich. Bei der Ersteinrichtung kannst du über ein registriertes Zumbyte-Konto eine kostenlose 90-Tage-Testlizenz mit unbegrenzten Gameservern, Nodes und Hosting-Kunden aktivieren. Die bestätigte E-Mail-Adresse und die Hardware werden zugeordnet. Während der Alpha lässt sich dieselbe Testlizenz kostenlos jeweils für 90 Tage ab der Verlängerung erneuern. Es entsteht kein kostenpflichtiges Abo. Vorhandene Codes werden zusammen mit der E-Mail-Adresse unter **Systemeinstellungen > Lizenz** hinterlegt. [Testlizenz und Tarife](https://zumbyte.de/licenses/).
 

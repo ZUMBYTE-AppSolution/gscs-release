@@ -1,7 +1,7 @@
 name: gscs-node
 services:
   node:
-    image: ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.3
+    image: ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.4
     pull_policy: never
     restart: unless-stopped
     network_mode: host

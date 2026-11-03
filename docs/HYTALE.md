@@ -1,5 +1,7 @@
 # Hytale-Anmeldung
 
+Servername, Passwort und Weltregeln sind unter [Hytale konfigurieren](HYTALE-CONFIG.md) beschrieben.
+
 Im Serverfenster **Hytale-Anmeldung** öffnen, ein Konto hinzufügen und dem Link zu Hytale folgen. GSCS zeigt Gerätecode und Restzeit an, wartet auf die Bestätigung und bietet danach die Spielprofile zur Zuordnung an. Unter **Systemeinstellungen > Hytale-Konten** können Administratoren Konten für Hosting-Server freigeben.
 
 Der Master verwaltet die OAuth-Zugangsdaten verschlüsselt. Er erneuert sie vor Ablauf und speichert beide rotierenden Tokens gemeinsam. Beim tatsächlichen Serverstart erhält jede Instanz eine eigene Spielsitzung. Hytale übernimmt deren laufende Verlängerung; GSCS startet dafür keine stündlichen Neustarts. Nodes erhalten keine OAuth-Refresh-Tokens. Windows, Linux, Docker und die WSL-Übergabe verwenden Umgebungsvariablen statt Token-Werten in Startargumenten.

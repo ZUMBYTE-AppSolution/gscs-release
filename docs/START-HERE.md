@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.3
+# GSCS 0.1.0-alpha.4
 
 GSCS ist Alpha-Software. Derzeit sind keine kostenpflichtigen Lizenzen erhältlich. Über ein registriertes Zumbyte-Konto mit bestätigter E-Mail-Adresse kannst du eine kostenlose 90-Tage-Testlizenz mit vollem Funktionsumfang aktivieren. Sie ist an die Hardware gebunden und während der Alpha jeweils kostenlos für 90 Tage ab der Verlängerung erneuerbar. Es entsteht kein kostenpflichtiges Abo.
 
@@ -44,7 +44,7 @@ Zuerst eine passende Lizenz auf dem Master aktivieren und im Bereich **Nodes & L
 
 Lokale Ausführung aktivieren oder einen erreichbaren Node anbinden. In den Systemeinstellungen TCP-/UDP-Portbereiche für diesen Node anlegen. Danach unter **Bereitstellung** eine freigegebene Vorlage auswählen und den Server erstellen.
 
-248 Profile sind enthalten. Die Konfiguration ist nach Bereichen gegliedert; je Spiel stehen passende Felder und Zugangsdaten zur Verfügung. Die Strukturprüfung belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale besitzt getrennte geführte Anmeldedialoge für Downloader und Serveranbieter.
+230 Profile sind enthalten. Die Konfiguration ist nach Bereichen gegliedert; je Spiel stehen passende Felder und Zugangsdaten zur Verfügung. Die Strukturprüfung belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale besitzt getrennte geführte Anmeldedialoge für Downloader und Serveranbieter.
 
 ## Updates und Sicherungen
 

@@ -8,7 +8,7 @@ Private Testversion. Die Pakete enthalten Master, Node und die benötigten Progr
 | Docker / Unraid | Ein gemeinsames Image. Der Master startet mit interner PostgreSQL-Datenbank in einem Container. Dieselbe Datei dient als Node oder als isolierter Spielcontainer. |
 | Laufzeiten | Native Prozesse, Wine, Proton und WSL; Java, .NET und Mono. Kundenserver benötigen isolierte Spielcontainer. SteamCMD und Wine/Proton setzen x64 voraus. |
 | Serververwaltung | Installation, Start, Stopp, Neustart, Konsole, RCON, Workshop, automatische Updates und Crash-Neustarts mit begrenzten Wiederholungen. |
-| Konfiguration | 248 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
+| Konfiguration | 230 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
 | Deployment | Wizard, freier JSON-Editor, Import eigener Profile sowie einstellbarer GitHub-Katalog mit automatischem Abruf und Freigabe geänderter Skripte. |
 | Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. |
 | Ressourcen | CPU-/RAM-Grenzen für Docker, RAM-/Speicherüberwachung nativer Server, monatliche Docker-Trafficlimits mit automatischer Sperrung und Monatswechsel. |
