@@ -25,7 +25,7 @@ Das gemeinsame Docker-Image wird in dieser Alpha als Download-Datei für x64 ver
 
 **docker.zip** entpacken und **bash load-images.sh** ausführen. Anschließend mit **bash prepare.sh** Master oder Node wählen und den Container mit Compose starten. Für Unraid die enthaltene **docker/unraid/gscs.xml** als Benutzervorlage ablegen und das geladene versionierte Image verwenden. Ein gemeinsamer Container enthält den Master, PostgreSQL und die Spiel-Laufzeiten. Der Node verwendet dasselbe Image und startet nur den Agenten. Isolierte Spielcontainer verwenden ebenfalls dasselbe Image und benötigen den Docker-Socket.
 
-Die alternativen Unraid-Vorlagen **GSCS-alpha**, **GSCS-beta** und **GSCS-release** verwenden private GHCR-Kanäle. Dafür ist ein ausdrücklich freigeschalteter GitHub-Zugang erforderlich. Beta und Release sind erst mit entsprechenden Builds verfügbar. [Container-Updates](docs/UNRAID-UPDATES.md).
+Für die Kanalauswahl direkt bei **Container hinzufügen** gibt es eine Vorlage **GSCS** und die kleine Unraid-Erweiterung [GSCS Kanalwahl](docker/unraid/gscs-channel-selector.plg). Unter **Plugins → Plugin installieren** die Raw-Adresse der `.plg` eintragen. Im Dropdown stehen Alpha, Beta und Release; noch nicht veröffentlichte Kanäle sind deaktiviert. Die Auswahl setzt Repository und Spielserver-Image gemeinsam um. Private GHCR-Kanäle benötigen einen ausdrücklich freigeschalteten GitHub-Zugang. Die versionierten öffentlichen Docker-Downloads lassen sich weiterhin ohne Registry-Anmeldung laden. [Installation und Container-Updates](docs/UNRAID-UPDATES.md).
 
 ## Vorlagen und Lizenz
 

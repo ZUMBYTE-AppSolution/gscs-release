@@ -1,0 +1,7 @@
+Menu="Buttons:80"
+Title="GSCS Kanalwahl"
+Link="gscs-channel-selector"
+Cond="preg_match('#/(AddContainer|UpdateContainer)(?:[/?]|$)#', $_SERVER['REQUEST_URI'] ?? '')"
+Markdown="false"
+---
+<script src="/plugins/gscs-channel-selector/channels.js?v=2026.11.03" defer></script>
