@@ -1,28 +1,25 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <Container version="2">
   <Name>GSCS</Name>
-  <Repository>ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.1</Repository>
+  <Repository>ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.3</Repository>
   <Registry>https://github.com/ZUMBYTE-AppSolution/gscs-release/pkgs/container/gscs</Registry>
-  <Network>bridge</Network>
+  <Network>host</Network>
   <Privileged>false</Privileged>
-  <ExtraParams>--add-host=host.docker.internal:host-gateway</ExtraParams>
+  <ExtraParams />
   <Support>https://github.com/ZUMBYTE-AppSolution/gscs-release/issues</Support>
   <Project>https://github.com/ZUMBYTE-AppSolution/gscs-release</Project>
-  <Overview>GSCS Master für Windows-/Linux-Gameserver. Separate PostgreSQL-18-Datenbank erforderlich. DB-Passwort und Einrichtungscode als geschützte Dateien unter /mnt/disk1/appdata/gscs-secrets vorbereiten. Im Webinterface Administrator und Nutzungslizenz einrichten. Ohne Lizenz: ein Gameserver auf localhost. Der Docker-Socket wird für das Verwalten von Spielcontainern benötigt und gibt dem GSCS-Dienst Hostrechte. Alternativ ohne Socket als reines Panel mit separatem Node betreiben.</Overview>
+  <Overview>GSCS mit interner PostgreSQL-Datenbank, SteamCMD, Java und Wine in einem Container. Ersten Administrator und Lizenz im Webinterface einrichten. Ohne Lizenz: ein Gameserver auf localhost. Ein Node verwendet dasselbe Image mit GSCS_ROLE=node und benötigt kein Webinterface und keine Verwaltungsdatenbank.</Overview>
   <WebUI>http://[IP]:[PORT:5080]/</WebUI>
   <Icon>https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/GSCS-256.png</Icon>
   <Config Name="Webinterface" Target="5080" Default="5080" Mode="tcp" Description="GSCS Webinterface" Type="Port" Display="always" Required="true" Mask="false">5080</Config>
   <Config Name="GSCS Daten" Target="/var/lib/gscs" Default="/mnt/disk1/appdata/gscs" Mode="rw" Description="Dauerhafte Konfiguration, Spieldateien und Backups" Type="Path" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
-  <Config Name="Secret-Dateien" Target="/run/secrets" Default="/mnt/disk1/appdata/gscs-secrets" Mode="ro" Description="db_password und setup_token; nicht öffentlich freigeben" Type="Path" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs-secrets</Config>
-  <Config Name="Datenbankhost" Target="GSCS_DB_HOST" Default="" Mode="" Description="IP oder Containername der PostgreSQL-Datenbank" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="Datenbankport" Target="GSCS_DB_PORT" Default="5432" Mode="" Description="PostgreSQL-Port" Type="Variable" Display="advanced" Required="true" Mask="false">5432</Config>
-  <Config Name="Datenbankname" Target="GSCS_DB_NAME" Default="gscs" Mode="" Description="Vorbereitete GSCS-Datenbank" Type="Variable" Display="always" Required="true" Mask="false">gscs</Config>
-  <Config Name="Datenbankbenutzer" Target="GSCS_DB_USER" Default="gscs" Mode="" Description="GSCS-Datenbankbenutzer" Type="Variable" Display="always" Required="true" Mask="false">gscs</Config>
-  <Config Name="DB Passwortdatei" Target="GSCS_DB_PASSWORD_FILE" Default="/run/secrets/db_password" Mode="" Description="Datei im Secret-Verzeichnis" Type="Variable" Display="advanced" Required="true" Mask="false">/run/secrets/db_password</Config>
-  <Config Name="Einrichtungscode-Datei" Target="GSCS_SETUP_TOKEN_FILE" Default="/run/secrets/setup_token" Mode="" Description="Einmaliger Code für die Webeinrichtung" Type="Variable" Display="advanced" Required="true" Mask="false">/run/secrets/setup_token</Config>
-  <Config Name="Abfrageziel für Spielcontainer" Target="GSCS_DOCKER_QUERY_HOST" Default="host.docker.internal" Mode="" Description="Docker-Host für Spielabfragen" Type="Variable" Display="advanced" Required="true" Mask="false">host.docker.internal</Config>
   <Config Name="Rolle" Target="GSCS_ROLE" Default="master" Mode="" Description="Master mit Webinterface" Type="Variable" Display="advanced" Required="true" Mask="false">master</Config>
   <Config Name="Lokale Ausführung" Target="GSCS_LOCAL_NODE" Default="true" Mode="" Description="localhost als Ausführungsnode aktivieren" Type="Variable" Display="always" Required="true" Mask="false">true</Config>
   <Config Name="Host-Datenpfad" Target="GSCS_DOCKER_HOST_ROOT" Default="/mnt/disk1/appdata/gscs" Mode="" Description="Muss exakt dem Hostpfad von GSCS Daten entsprechen" Type="Variable" Display="always" Required="true" Mask="false">/mnt/disk1/appdata/gscs</Config>
+  <Config Name="Spielserver-Image" Target="GSCS_CONTAINER_IMAGE" Default="ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.3" Mode="" Description="Verwendet denselben Kanal wie Repository. Beim Kanalwechsel beide Angaben ändern." Type="Variable" Display="advanced" Required="true" Mask="false">ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.3</Config>
   <Config Name="Docker-Verwaltung" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Optional: Docker-Socket für Spielcontainer. Gewährt Hostrechte." Type="Path" Display="advanced" Required="false" Mask="false">/var/run/docker.sock</Config>
+  <Config Name="Webadresse" Target="GSCS_URL" Default="http://0.0.0.0:5080" Mode="" Description="Bind-Adresse und Port des Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false">http://0.0.0.0:5080</Config>
+  <Config Name="Master-Adresse" Target="GSCS_MASTER_URL" Default="" Mode="" Description="Nur für Rolle node: HTTPS-Adresse des Masters" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Node-ID" Target="GSCS_NODE_ID" Default="" Mode="" Description="Nur für Rolle node: Registrierung aus dem Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="Node-Schlüsseldatei" Target="GSCS_AGENT_KEY_FILE" Default="" Mode="" Description="Nur für Rolle node: geschützte Datei mit Registrierungsschlüssel" Type="Variable" Display="advanced" Required="false" Mask="false" />
 </Container>

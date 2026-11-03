@@ -107,6 +107,7 @@ PY
 unset GSCS_INSTALL_DB_PASSWORD GSCS_INSTALL_SETUP GSCS_INSTALL_AGENT_KEY
 chown -R gscs:gscs "$data_root";chmod 700 "$data_root";chmod -R a+rX "$install_root/current"
 cp "$script_root/update.sh" "$install_root/update.sh";chmod 700 "$install_root/update.sh"
+if [[ $role == node || $local_node == true ]];then bash "$script_root/install-runtimes.sh" "$install_root";fi
 service=gscs;[[ $role == node ]] && service=gscs-node
 cat > "/etc/systemd/system/$service.service" <<UNIT
 [Unit]
@@ -117,7 +118,11 @@ Wants=network-online.target
 Type=notify
 User=gscs
 Group=gscs
+Environment=DISPLAY=:99
+Environment=DOTNET_ROOT=$install_root/runtimes/dotnet
+Environment=GSCS_PROTON_PATH=$install_root/runtimes/proton/proton
 WorkingDirectory=$install_root/current
+ExecStartPre=+$install_root/current/GSCS --prepare-hardware
 ExecStart=$install_root/current/GSCS --data-root $data_root
 Restart=on-failure
 RestartSec=10

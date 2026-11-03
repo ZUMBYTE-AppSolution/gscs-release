@@ -93,6 +93,7 @@ if($Role -eq 'Master'){& sc.exe config $service depend= 'GSCS-PostgreSQL'|Out-Nu
 & sc.exe failure $service reset= 86400 actions= restart/15000/restart/30000/restart/60000 | Out-Null
 Copy-Item -LiteralPath (Join-Path $InstallerDirectory 'update.ps1') -Destination (Join-Path $InstallRoot 'update.ps1') -Force
 Copy-Item -LiteralPath (Join-Path $InstallerDirectory 'release-public.json') -Destination (Join-Path $InstallRoot 'release-public.json') -Force
+if($Role -eq 'Node' -or $LocalNode){& (Join-Path $InstallerDirectory 'install-runtimes.ps1') -InstallRoot $InstallRoot -DataRoot $DataRoot -InstallerDirectory $InstallerDirectory}
 Start-Service -Name $service
 if($Role -eq 'Master'){$ready=$false;for($attempt=0;$attempt -lt 90;$attempt++){try{$health=Invoke-RestMethod -UseBasicParsing -Uri ($ListenUrl.Replace('0.0.0.0','127.0.0.1').TrimEnd('/')+'/health');if($health.app -eq 'GSCS'){$ready=$true;break}}catch{};Start-Sleep -Seconds 1};if(-not $ready){throw 'Der Dienst wurde installiert, der Master ist aber noch nicht bereit. Ereignisprotokoll pruefen; keine Daten wurden geloescht.'}}
 Write-Host '';Write-Host ('GSCS '+$Role+' installiert.');Write-Host '----------------------------------------'

@@ -1,28 +1,32 @@
-# Funktionsstand – 0.1.0-alpha.1
+# GSCS 0.1.0-alpha.3
 
-Die Alpha ist nutzbar, enthält aber noch nicht den vollständigen geplanten Umfang. Zusätzliche Anbieter und Laufzeiten benötigen ihre jeweiligen Dienste, Zugangsdaten und Voraussetzungen.
+Private Testversion. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
 
-| Bereich | In dieser Alpha | Noch offen / Einschränkung |
-|---|---|---|
-| Docker und Ressourcen | Container pro Server, CPU/RAM-Vorgaben, getrennte Netzwerke, persistente Spieldateien | Native Prozesse haben keine gleichwertige vollständige Containerisolation. |
-| Windows und Linux | Eigene Master-/Node-Pakete; native Ausführung; Adapter für Wine, Proton und WSL | Keine automatische Windows-VM-Provisionierung. Kompatibilität muss pro Spiel geprüft werden. |
-| Backups | Verschlüsselte lokale Sicherungen, Integritätsprüfung, bewusster Restore, verschlüsselter Systemexport/-import | Automatische externe S3-Sicherung und vollständige Aufbewahrungsautomatik fehlen. |
-| Updates | SteamCMD-Updates, Wartungsfenster, Vorab-Sicherung; signierter GSCS-Updater mit Datenbank-Rücksicherung | Kein garantierter Rückwechsel von bereits geänderten Spielstandformaten. |
-| Hosting | Kundenrollen, Pakete, bestätigte Bestellungen, Zuordnung, Sperrung, Lizenzgrenzen; Abrechnungsadapter | Externe Hosting-Zahlungsanbieter sind nicht mit echten Zahlungen geprüft. Vollständige Hosting-Abrechnung bleibt im Ausbau. |
-| Deployment | 61 eigene Vorlagen, Wizard, JSON-Editor, manuelle Importe, GitHub-Katalog mit Prüf-/Freigabeschritt | 26 Vorlagen benötigen zusätzliche Konfiguration. Katalogabgleich wird im Interface angestoßen. |
-| Workshop und Mods | Workshop-Downloads, IDs, Reihenfolge und konfigurierbare Zielverzeichnisse | Kein vollständiger Modpack-Abhängigkeitslöser für sämtliche Spiele. |
-| Monitoring | CPU/RAM/Speicher, Prozessstatus, Minecraft-/A2S-Abfragen, begrenzter Crash-Watchdog | Spielmetriken unterscheiden sich; Hytale-Spielerzahl und QUIC-Erreichbarkeit sind nicht vollständig angebunden. |
-| Benutzer und Sicherheit | Rollen, Serverrechte, 2FA, Passkeys, OIDC, API-Tokens und Auditprotokoll | Passkey-Hardware und produktive SSO-Anbieter müssen am Ziel geprüft werden. |
-| Dateien und Konsole | Browser-Dateien/Editor/Upload, Konsole, RCON, SFTPGo-Anbindung | SFTPGo ist separat bereitzustellen. Native Konsolen nach einem Agent-Neustart ggf. über RCON oder Serverneustart verbinden. |
-| Node-Umzug | Master und Nodes werden getrennt verwaltet | Automatischer verschlüsselter Node-zu-Node-Umzug ist noch nicht enthalten. |
-| Netzwerk | Portpools pro Node/IP und TCP/UDP, atomare Portbündel, DNS-/Provideradapter | NAT, Firewall und externe Erreichbarkeit müssen passend eingerichtet sein. |
-| Automatisierung | Zeitpläne, Auftragswarteschlange, API, Webhook-/Provideranbindungen | Anbieterabhängige Abläufe benötigen Konfiguration und Prüfung. |
-| Statusseite | Freigegebene Server und öffentliche Störungs-/Wartungsmeldungen | Kein vollständiges öffentliches Langzeit-SLA-Reporting. |
-| Speicher | Speicherquoten, Downloadcache, lokale Daten-/Backupverwaltung | Vollständige Traffic-Abrechnung, Storage-Tiering und standortübergreifende Cache-Verteilung fehlen. |
-| DDoS und externe Tests | Schnittstellen für externe Provider und Erreichbarkeitstests | Der tatsächliche Schutz muss vom Netzwerkprovider kommen. |
+| Bereich | Funktionen |
+|---|---|
+| Installation | Windows und Debian/Ubuntu, Master oder Node, lokale Ausführung oder Start ohne Nodes, PostgreSQL mit zufälligen Zugangsdaten und anschließender Web-Einrichtung. |
+| Docker / Unraid | Ein gemeinsames Image. Der Master startet mit interner PostgreSQL-Datenbank in einem Container. Dieselbe Datei dient als Node oder als isolierter Spielcontainer. |
+| Laufzeiten | Native Prozesse, Wine, Proton und WSL; Java, .NET und Mono. Kundenserver benötigen isolierte Spielcontainer. SteamCMD und Wine/Proton setzen x64 voraus. |
+| Serververwaltung | Installation, Start, Stopp, Neustart, Konsole, RCON, Workshop, automatische Updates und Crash-Neustarts mit begrenzten Wiederholungen. |
+| Konfiguration | 248 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
+| Deployment | Wizard, freier JSON-Editor, Import eigener Profile sowie einstellbarer GitHub-Katalog mit automatischem Abruf und Freigabe geänderter Skripte. |
+| Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. |
+| Ressourcen | CPU-/RAM-Grenzen für Docker, RAM-/Speicherüberwachung nativer Server, monatliche Docker-Trafficlimits mit automatischer Sperrung und Monatswechsel. |
+| Netzwerk | Portbereiche pro Node, IP und TCP/UDP, atomare Portreservierung, Portoffsets sowie TCP-/UDP-Weiterleitung für WSL. |
+| Backups | Verschlüsselte Sicherungen, vollständige Integritätsprüfung, geschützter Restore, automatische externe S3-Kopien, Aufbewahrung und angeheftete Sicherungen. Wine-/Proton-Spielstände werden mitgesichert. |
+| Systemwechsel | Verschlüsselter Systemexport mit Datenbank und optionalen Dateien, Vorschau vor Import, Rücksicherung sowie verschlüsselter Node-Umzug mit Fortschritt, Abbruch und Rückkehr bei Fehlern. |
+| Hosting | Kundenrollen, Paketkarten, Preis-/Ressourcensnapshots, bestätigte Bestellungen, Bereitstellung, PayPal-Abos und Verlängerungen, Kündigung zum Laufzeitende, Zahlungsbelege und Zahlungsausfallsperren. Stripe und WHMCS sind zusätzlich angebunden. |
+| Zugriff | Rollen und Serverfreigaben, getrennte Startskriptberechtigung, 2FA, Passkeys, OIDC, API-Tokens, Auditprotokoll und SFTPGo-Anbindung. |
+| Automatisierung | Zeitpläne, Wartungsfenster, Auftragswarteschlange, Webhooks, SMTP-/Discord-Meldungen, DNS-/DDoS-Provideradapter. |
+| Statusseite | Freigegebene Server, Störungs-/Wartungsmeldungen und tägliche Verfügbarkeit. Wartung und fehlende Messungen werden gesondert erfasst. |
+| Lizenz und Updates | Single, Volumen, Hosting mit Kundenlimit und Hosting Pro. Signierte Lizenzfreigaben und Auslieferungen, regelmäßige Lizenzprüfung und Updates mit Datenbank-Rücksicherung. |
 
-Die Lizenzverwaltung unterscheidet kostenloses Single, Volumen, Hosting mit Kundenlimit und Hosting Pro. Lizenzprüfung spätestens alle 48 Stunden; bei ungültiger Freigabe werden zusätzliche Server gestoppt und entfernte Nodes gesperrt. Die Daten bleiben erhalten. Lifetime benötigt ebenfalls die regelmäßige Prüfung.
+Ohne Lizenz ist ein Gameserver auf localhost möglich. Bei ungültiger Lizenz werden zusätzliche Server gestoppt und entfernte Nodes gesperrt; gespeicherte Daten bleiben erhalten. Der Lizenzcode wird unter **Systemeinstellungen → Lizenz** eingetragen.
 
-Die Hytale-Kontoanbindung verwaltet OAuth-Tokens zentral und verschlüsselt, koordiniert deren Rotation und erstellt beim tatsächlichen Start eine eigene Spielsitzung je Server. Die Hytale-Server verlängern ihre laufenden Sitzungen. Ein echtes Konto und ein längerer Live-Serverbetrieb sind gesondert zu prüfen.
+Hytale besitzt geführte Anmeldedialoge für Downloader und Serveranbieter. Zugangsdaten werden verschlüsselt gespeichert, OAuth-Tokens erneuert und beim Serverstart eigene Spielsitzungen angefordert. Ein echtes Hytale-Konto ist für die Anmeldung erforderlich.
 
-Die Dienstinstaller sowie Update-/Rollback-Abläufe sind in dieser ersten Alpha noch nicht auf allen sauberen Betriebssystem-Referenzsystemen verifiziert. Für Produktivdaten vorher externe Sicherungen anlegen.
+Die Profile wurden auf das GSCS-Format übertragen und strukturell geprüft. Das ist kein Live-Startnachweis aller Spiele. Spielberechtigungen, Anti-Cheat-Unterstützung und die Eignung für Wine/Proton unterscheiden sich je Spiel. Die zugehörigen Lizenzhinweise werden mitgeliefert.
+
+Native Prozesse haben keine gleichwertige CPU-Begrenzung oder Mandantentrennung wie Docker. Für Kundenhosting Docker verwenden. SFTP, Zahlungs-, Speicher- und Netzwerkprovider benötigen ihre Zugangsdaten. Die tatsächliche DDoS-Abwehr erfolgt beim Netzwerkprovider.
+
+Referenzsystem-Installationen unter Windows/Linux, längerer Hytale-Betrieb, produktive Zahlungsanbieter und reale externe Speicher sind gesondert zu prüfen. Zahlungsbelege ersetzen keine steuerliche Rechnung; dafür kann das eigene Abrechnungssystem angebunden werden.

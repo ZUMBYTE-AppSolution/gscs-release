@@ -1,56 +1,15 @@
-name: Export Docker downloads
+name: Rebuild Docker download files
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing draft release tag
+        description: Existing private draft release tag
         required: true
         type: string
-      role:
-        description: Image role to export
-        default: all
-        type: choice
-        options: [all, master, node, runtime]
 permissions:
   contents: write
-  packages: read
 jobs:
-  export:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        role: [master, node, runtime]
-        arch: [amd64, arm64]
-    steps:
-      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Export and attach image
-        if: inputs.role == 'all' || inputs.role == matrix.role
-        env:
-          TAG: ${{ inputs.tag }}
-          GH_TOKEN: ${{ github.token }}
-          ROLE: ${{ matrix.role }}
-          ARCH: ${{ matrix.arch }}
-        run: |
-          set -euo pipefail
-          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$ ]] || exit 2
-          [[ $(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft) = true ]] || exit 2
-          VERSION=${TAG#v}
-          case "$ROLE" in master) NAME=gscs;; node) NAME=gscs-node;; runtime) NAME=gscs-runtime;; esac
-          case "$ARCH" in amd64) RID=linux-x64;; arm64) RID=linux-arm64;; esac
-          IMAGE=ghcr.io/zumbyte-appsolution/$NAME:$VERSION
-          docker pull --platform "linux/$ARCH" "$IMAGE"
-          FILE=GSCS-$VERSION-docker-$ROLE-$RID.tar.gz
-          if [[ "$ROLE" = runtime ]]; then
-            docker tag "$IMAGE" ghcr.io/zumbyte-appsolution/gscs-runtime:0.1.0
-            docker save "$IMAGE" ghcr.io/zumbyte-appsolution/gscs-runtime:0.1.0 | gzip -1 > "$FILE"
-          else
-            docker save "$IMAGE" | gzip -1 > "$FILE"
-          fi
-          sha256sum "$FILE" > "$FILE.sha256"
-          gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" --clobber "$FILE" "$FILE.sha256"
+  common-image:
+    uses: ./.github/workflows/containers.yml
+    with:
+      tag: ${{ inputs.tag }}

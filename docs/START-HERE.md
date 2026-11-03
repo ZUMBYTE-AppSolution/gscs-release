@@ -1,4 +1,6 @@
-# GSCS 0.1.0-alpha.1
+# GSCS 0.1.0-alpha.3
+
+GSCS ist Alpha-Software. Derzeit sind keine kostenpflichtigen Lizenzen erhältlich. Über ein registriertes Zumbyte-Konto mit bestätigter E-Mail-Adresse kannst du eine kostenlose 90-Tage-Testlizenz mit vollem Funktionsumfang aktivieren. Sie ist an die Hardware gebunden und während der Alpha jeweils kostenlos für 90 Tage ab der Verlängerung erneuerbar. Es entsteht kein kostenpflichtiges Abo.
 
 Diese Alpha enthält die ausführbare Verwaltung für Windows und Linux. Ein .NET-SDK wird nicht benötigt. Der Funktionsstand steht in FEATURES.md.
 
@@ -8,13 +10,15 @@ Diese Alpha enthält die ausführbare Verwaltung für Windows und Linux. Ein .NE
 2. **start-master.cmd** starten und auswählen, ob Gameserver lokal ausgeführt werden sollen.
 3. **http://127.0.0.1:5080** öffnen. Mit dem angezeigten Einrichtungscode den Administrator anlegen.
 
-Die portable Installation verwendet eine mitgelieferte SQLite-Datenbank. Daten und Konfiguration liegen unter **%LOCALAPPDATA%\GSCS**. Der Lizenzcode wird im Webinterface unter **Systemeinstellungen > Lizenz** eingetragen. Ohne Lizenz ist ein eigener Gameserver auf localhost möglich.
+Die portable Installation verwendet eine mitgelieferte SQLite-Datenbank. Daten und Konfiguration liegen unter **%LOCALAPPDATA%\GSCS**. Im Webinterface kannst du direkt bei der Einrichtung eine Testlizenz freischalten oder Lizenzcode und E-Mail-Adresse unter **Systemeinstellungen > Lizenz** eintragen. Ohne Lizenz ist ein eigener Gameserver auf localhost möglich.
 
 ## Linux: direkt starten
 
+Für eine portable Lizenzaktivierung unter Linux einmal `sudo ./GSCS --prepare-hardware` ausführen, falls GSCS die Hardwarekennung nicht direkt lesen kann. Der Dienstinstaller und das Docker-Image erledigen dies automatisch.
+
 Das Master-Paket für x64 oder ARM64 entpacken und **bash start-master.sh** ausführen. Die Daten liegen standardmäßig unter **~/.local/share/gscs**. `GSCS_DATA` legt einen anderen Datenordner fest. Mit `GSCS_URL=http://0.0.0.0:5080` lässt sich die Bindeadresse vor der Ersteinrichtung ändern. Für öffentlichen Zugriff HTTPS über einen Reverse-Proxy einrichten.
 
-SteamCMD-Spiele benötigen einen x64-Node. Wine/Proton und WSL müssen auf dem jeweiligen Node eingerichtet sein; ihre Spielkompatibilität ist nicht pauschal garantiert.
+SteamCMD-Spiele benötigen einen x64-Node. Die Dienstinstaller richten auch die Spiel- und Kompatibilitätslaufzeiten ein. Unter Windows kann WSL einen Neustart benötigen; die Einrichtung wird anschließend automatisch fortgesetzt. Bei portabler Nutzung die mitgelieferten Laufzeitinstaller verwenden.
 
 ## Installation als Dienst mit PostgreSQL
 
@@ -26,9 +30,11 @@ Die Dienstinstaller sind Alpha und noch nicht auf sauberen Windows-/Debian-Refer
 
 ## Docker / Unraid
 
-Das **docker.zip** enthält Compose-Dateien, Image-Loader und das Unraid-Template. Zuerst **bash load-images.sh** ausführen: signierte Image-Prüfsummen werden geprüft und die passenden Docker-Dateien von diesem Release geladen. Danach `bash prepare.sh` erzeugt geschützte Passwortdateien. Anschließend `GSCS_HOST_DATA` auf den absoluten Host-Datenpfad setzen und `docker compose up -d` ausführen. PostgreSQL wird als separater Container gestartet. Die Einrichtung geht unter **http://SERVER-IP:5080** weiter.
+Das **docker-universal-linux-x64.tar.gz** herunterladen und mit `docker load --input DATEINAME.tar.gz` laden. Für die Einrichtung dienen die Compose-Datei oder das Unraid-Template aus **docker.zip**. PostgreSQL und die Spiel-Laufzeiten sind im gemeinsamen Image enthalten. Der Master fragt den Administrator und die Lizenzwahl beim ersten Aufruf des Webinterfaces ab.
 
-Der Master kann mit oder ohne lokale Spielausführung betrieben werden. Nur für die Verwaltung von Spielcontainern wird der Docker-Socket benötigt. Datenordner und Host-Pfad für Spielcontainer müssen übereinstimmen. Ohne Socket einen separaten Node verwenden.
+Auf Unraid das geladene versionierte Image als Repository eintragen und denselben Namen bei „Spielserver-Image“ verwenden. Die privaten GHCR-Kanäle `alpha`, `beta` und `release` benötigen einen freigeschalteten GitHub-Zugang. Öffentlich steht das Docker-Downloadarchiv zur Verfügung.
+
+Native Spiele laufen direkt im gemeinsamen Container. Für zusätzliche isolierte Spielcontainer den Docker-Socket einbinden; auch diese verwenden dasselbe GSCS-Image. Datenordner und Host-Pfad für Spielcontainer müssen übereinstimmen. Compose-Dateien und Unraid-Template liegen zusätzlich im **docker.zip**.
 
 ## Node anbinden
 
@@ -38,7 +44,7 @@ Zuerst eine passende Lizenz auf dem Master aktivieren und im Bereich **Nodes & L
 
 Lokale Ausführung aktivieren oder einen erreichbaren Node anbinden. In den Systemeinstellungen TCP-/UDP-Portbereiche für diesen Node anlegen. Danach unter **Bereitstellung** eine freigegebene Vorlage auswählen und den Server erstellen.
 
-61 eigene Profile sind enthalten: 35 sind freigegeben, 26 benötigen zusätzliche Konfiguration und anschließende Administratorfreigabe. Steam-App-IDs und Startmetadaten wurden direkt mit Valve SteamCMD abgeglichen. Das belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale hat einen geführten Gerätecode-Dialog; der offizielle Downloader besitzt eine getrennte Anmeldung.
+248 Profile sind enthalten. Die Konfiguration ist nach Bereichen gegliedert; je Spiel stehen passende Felder und Zugangsdaten zur Verfügung. Die Strukturprüfung belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale besitzt getrennte geführte Anmeldedialoge für Downloader und Serveranbieter.
 
 ## Updates und Sicherungen
 
