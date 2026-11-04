@@ -1,6 +1,6 @@
 # GSCS · Downloads und Installation
 
-[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.8) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
+[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.9) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
 
 GSCS verwaltet Gameserver unter Windows und Linux. Dies ist **Alpha-Software**.  [Funktionsstand](FEATURES.md) und [Startanleitung](START-HERE.md) beschreiben die Grenzen.
 

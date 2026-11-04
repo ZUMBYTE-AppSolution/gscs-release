@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.8
+# GSCS 0.1.0-alpha.9
 
 GSCS ist Alpha-Software. Derzeit sind keine kostenpflichtigen Lizenzen erhältlich. Über ein registriertes Zumbyte-Konto mit bestätigter E-Mail-Adresse kannst du eine kostenlose 90-Tage-Testlizenz mit vollem Funktionsumfang aktivieren. Sie ist an die Hardware gebunden und während der Alpha jeweils kostenlos für 90 Tage ab der Verlängerung erneuerbar. Es entsteht kein kostenpflichtiges Abo.
 
@@ -45,6 +45,16 @@ Zuerst eine passende Lizenz auf dem Master aktivieren und im Bereich **Nodes & L
 Lokale Ausführung aktivieren oder einen erreichbaren Node anbinden. In den Systemeinstellungen TCP-/UDP-Portbereiche für diesen Node anlegen. Danach unter **Bereitstellung** eine freigegebene Vorlage auswählen und den Server erstellen.
 
 231 Profile sind enthalten. Einstellungen lassen sich durchsuchen und nach Kategorien öffnen. Unter **Ressourcen** übernimmt das Spielerlimit den Standardwert und die Grenzen des Spiels; dort kannst du es auch später in der Serverkonfiguration ändern. Je Spiel stehen passende Felder und Zugangsdaten zur Verfügung. Die Strukturprüfung belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale besitzt getrennte geführte Anmeldedialoge für Downloader und Serveranbieter.
+
+## Server entfernen und wiederherstellen
+
+Als Administrator den Server öffnen und **Server entfernen** im Kopf des Fensters oder unten unter **Konfiguration** wählen. **Aus GSCS entfernen** behält die Spieldateien auf dem Node. **Vollständig deinstallieren** löscht auch die Spieldateien und die zugehörige Spielinstanz. Zur Bestätigung den Servernamen exakt eingeben.
+
+Der Node muss erreichbar, der Server gestoppt und seine Aufträge abgeschlossen sein. GSCS prüft den tatsächlichen Stopp auf dem Node. Fortschritt und Fehler erscheinen im Webinterface. Bei einem Fehler bleibt der Eintrag erhalten; der Versuch lässt sich mit derselben Dateiauswahl wiederholen. Bleibt ein Spielprozess zurück, bestätige den Servernamen und wähle **Verbliebenen Prozess stoppen**. Danach den Namen erneut eingeben und die Entfernung separat wiederholen.
+
+GSCS-Backups bleiben erhalten. Über **Gameserver → Entfernte Server → Wiederherstellen** nimmst du den Verwaltungseintrag und den Zugriff auf seine Backups wieder auf. Der ursprüngliche Node muss erreichbar sein und passende freie Ports in seinen Pools haben. Der Server bleibt gestoppt. Bei zuvor gelöschten Spieldateien anschließend ein Backup wiederherstellen oder die Installation erneut ausführen; die Wiederaufnahme allein stellt diese Dateien nicht wieder her.
+
+Ein zugehöriger Hostingvertrag wird durch das Entfernen nicht gekündigt. Bestellungen und Zahlungen bleiben erhalten. Bereits heruntergeladene Sicherungen und Exporte bleiben unverändert.
 
 ## Updates und Sicherungen
 
