@@ -1,7 +1,7 @@
 <p align="center"><img src="https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/app-icon.svg" width="112" height="112" alt="GSCS app-icon"></p>
 <h1 align="center">GSCS · GameServer Control System</h1>
 <p align="center">Deine Gameserver. Ein Webinterface.</p>
-<p align="center"><a href="https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.5">Herunterladen</a> · <a href="docs/START-HERE.md">Erste Schritte</a> · <a href="https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki">Eigene Spielvorlagen</a> · <a href="https://www.zumbyte.de/support/">Support</a></p>
+<p align="center"><a href="https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.6">Herunterladen</a> · <a href="docs/START-HERE.md">Erste Schritte</a> · <a href="https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki">Eigene Spielvorlagen</a> · <a href="https://www.zumbyte.de/support/">Support</a></p>
 
 **GSCS** verwaltet Gameserver auf Windows- und Linux-Systemen über deinen Browser. Installiere Spiele aus dem Katalog, passe ihre Einstellungen an und behalte Status, Auslastung und Verbindungen im Blick. Ein Master verwaltet deine lokalen Server und zusätzliche Nodes. Für Kundenhosting stehen getrennte Zugänge, Ressourcenlimits und Bestellungen bereit.
 
@@ -25,12 +25,12 @@ Die Screenshots zeigen die Oberfläche mit Beispieldaten. Spielnamen und Bilder 
 
 | Installation | Paket |
 |---|---|
-| Windows x64 · Webinterface und lokaler Node | [Master für Windows](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.5/GSCS-0.1.0-alpha.5-master-win-x64.zip) |
-| Linux x64 · Webinterface und lokaler Node | [Master für Linux x64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.5/GSCS-0.1.0-alpha.5-master-linux-x64.zip) |
-| Linux ARM64 · Webinterface und lokaler Node | [Master für Linux ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.5/GSCS-0.1.0-alpha.5-master-linux-arm64.zip) |
-| Docker x64 | [Image-Archiv](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.5/GSCS-0.1.0-alpha.5-docker-universal-linux-x64.tar.gz) · [Compose und Einrichtung](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.5/GSCS-0.1.0-alpha.5-docker.zip) |
-| Unraid | [Vorlage, Kanalwahl und Installer](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.5/GSCS-0.1.0-alpha.5-unraid-tools.zip) |
-| Weitere Nodes | [Node-Pakete für Windows und Linux](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.5) |
+| Windows x64 · Webinterface und lokaler Node | [Master für Windows](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-master-win-x64.zip) |
+| Linux x64 · Webinterface und lokaler Node | [Master für Linux x64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-master-linux-x64.zip) |
+| Linux ARM64 · Webinterface und lokaler Node | [Master für Linux ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-master-linux-arm64.zip) |
+| Docker x64 | [Image-Archiv](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-docker-universal-linux-x64.tar.gz) · [Compose und Einrichtung](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-docker.zip) |
+| Unraid | [Vorlage, Kanalwahl und Installer](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-unraid-tools.zip) |
+| Weitere Nodes | [Node-Pakete für Windows und Linux](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.6) |
 
 Unter Windows **start-master.cmd**, unter Linux **bash start-master.sh** ausführen und die Einrichtung im Browser abschließen. Die Dienstinstaller fragen nach Master oder Node, lokaler Ausführung und Datenbank. Zufällige Datenbank-Zugangsdaten werden hinterlegt und am Ende ausgegeben. [Installation und Paketwahl](docs/INSTALLATION.md).
 
@@ -51,7 +51,18 @@ Docker verwendet **ein gemeinsames Image** für Master, Node und isolierte Spiel
 
 Hytale hat einen geführten Anmeldedialog mit Link, Gerätecode und Bestätigungsanzeige. GSCS hält die Anbieteranmeldung aktuell und erstellt eigene Spielsitzungen. Updates werden über GSCS ausgeführt. [Hytale einrichten](docs/HYTALE.md) · [Ports und UPnP](docs/NETWORK.md) · [SteamGridDB einrichten](docs/ARTWORK.md).
 
-## Neu in Alpha 5
+## Neu in Alpha 6
+
+- Gültige Dezimalwerte blockieren die Bereitstellung nicht mehr. Ganzzahlen, Grenzen und vorgegebene Schrittweiten werden weiter geprüft.
+- Ungültige Eingaben öffnen ihren Tab und nennen Feld und Grund.
+- Ausgeschaltete Schalter und leere Auswahlwerte werden beim Erstellen korrekt übernommen.
+- Plattformspezifische Pflichtfelder passen zu Node und Laufzeit; ein Wechsel erhält eingegebene Werte.
+- Statuswerte aktualisieren sich ohne kompletten Seitenneuaufbau. Spielbilder, Fokus und Eingaben bleiben erhalten; fehlende Bilder werden begrenzt erneut angefragt.
+- Vorlagenübersichten werden für schnellere Folgeabrufe zwischengespeichert.
+
+[Versionshinweise zu Alpha 6](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.6).
+
+## Aus Alpha 5
 
 - Docker übernimmt den neuen Programmstand auch bei gleicher Versionsnummer. Entscheidend sind die signierten Programmdateien des Images.
 - Bestehende Alpha-4-Datenordner verwenden nach dem Update die neue Anwendung. Benutzer, Lizenzen, Einstellungen und Spieldateien bleiben erhalten.

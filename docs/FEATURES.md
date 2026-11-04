@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.5
+# GSCS 0.1.0-alpha.6
 
 Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
 
@@ -8,9 +8,9 @@ Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlau
 | Docker / Unraid | Ein gemeinsames Image. Der Master startet mit interner PostgreSQL-Datenbank in einem Container. Dieselbe Datei dient als Node oder als isolierter Spielcontainer. |
 | Laufzeiten | Native Prozesse, Wine, Proton und WSL; Java, .NET und Mono. Kundenserver benötigen isolierte Spielcontainer. SteamCMD und Wine/Proton setzen x64 voraus. |
 | Serververwaltung | Installation, Start, Stopp, Neustart, Konsole, RCON, Workshop, automatische Updates und Crash-Neustarts mit begrenzten Wiederholungen. |
-| Konfiguration | 231 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
+| Konfiguration | 231 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Dezimalwerte und leere Schalterwerte werden korrekt verarbeitet; ungültige Eingaben öffnen den zugehörigen Tab. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
 | Deployment | Wizard, freier JSON-Editor, Import eigener Profile sowie einstellbarer GitHub-Katalog mit automatischem Abruf und Freigabe geänderter Skripte. |
-| Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen, kopierbare Spieladressen, Einzel-/Sammelaktionen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. |
+| Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen, kopierbare Spieladressen, Einzel-/Sammelaktionen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. Hintergrundaktualisierungen erhalten Eingaben und geladene Bilder. |
 | Ressourcen | CPU-/RAM-Grenzen für Docker, RAM-/Speicherüberwachung nativer Server, monatliche Docker-Trafficlimits mit automatischer Sperrung und Monatswechsel. |
 | Netzwerk | Freie Portwahl innerhalb der Pools pro Node, IP und TCP/UDP; Belegungsprüfung für Systemdienste und Docker, atomare Reservierung und Änderung bei gestoppten Servern, Portoffsets, bestätigte UPnP-Routerfreigaben mit Erneuerung und Bereinigung sowie TCP-/UDP-Weiterleitung für WSL. |
 | Backups | Verschlüsselte Sicherungen, vollständige Integritätsprüfung, geschützter Restore, automatische externe S3-Kopien, Aufbewahrung und angeheftete Sicherungen. Wine-/Proton-Spielstände werden mitgesichert. |

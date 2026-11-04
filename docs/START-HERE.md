@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.5
+# GSCS 0.1.0-alpha.6
 
 GSCS ist Alpha-Software. Derzeit sind keine kostenpflichtigen Lizenzen erhältlich. Über ein registriertes Zumbyte-Konto mit bestätigter E-Mail-Adresse kannst du eine kostenlose 90-Tage-Testlizenz mit vollem Funktionsumfang aktivieren. Sie ist an die Hardware gebunden und während der Alpha jeweils kostenlos für 90 Tage ab der Verlängerung erneuerbar. Es entsteht kein kostenpflichtiges Abo.
 
