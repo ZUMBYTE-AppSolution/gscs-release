@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.7
+# GSCS 0.1.0-alpha.8
 
 Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
 
@@ -6,9 +6,9 @@ Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlau
 |---|---|
 | Installation | Windows und Debian/Ubuntu, Master oder Node, lokale Ausführung oder Start ohne Nodes, PostgreSQL mit zufälligen Zugangsdaten und anschließender Web-Einrichtung. |
 | Docker / Unraid | Ein gemeinsames Image. Der Master startet mit interner PostgreSQL-Datenbank in einem Container. Dieselbe Datei dient als Node oder als isolierter Spielcontainer. |
-| Laufzeiten | Native Prozesse, Wine, Proton und WSL; Java, .NET und Mono. Kundenserver benötigen isolierte Spielcontainer. SteamCMD und Wine/Proton setzen x64 voraus. |
+| Laufzeiten | Native Prozesse, Wine, Proton und WSL; Wine-/Proton-Ordner werden vor dem Start angelegt und bleiben beim Wechsel des Arbeitsordners der Serverinstanz zugeordnet. Java, .NET und Mono. Kundenserver benötigen isolierte Spielcontainer. SteamCMD und Wine/Proton setzen x64 voraus. |
 | Serververwaltung | Installation, Start, Stopp, Neustart, Konsole, RCON, Workshop, automatische Updates und Crash-Neustarts mit begrenzten Wiederholungen. |
-| Konfiguration | 231 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Dezimalwerte und leere Schalterwerte werden korrekt verarbeitet; ungültige Eingaben öffnen den zugehörigen Tab. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
+| Konfiguration | Suche, Kategorien und Feldgruppen für 231 Profile, getrennte Bereiche für Server, Spiel und Ressourcen sowie direkte Fehlerhinweise. Spielerlimits übernehmen Vorgaben und Grenzen des Spielprofils. Konfigurationsfelder mit Dateizuordnung und plattformabhängigen Startparametern. Dezimalwerte und leere Schalterwerte werden korrekt verarbeitet; ungültige Eingaben öffnen den zugehörigen Tab. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
 | Deployment | Wizard, freier JSON-Editor, Import eigener Profile sowie einstellbarer GitHub-Katalog mit automatischem Abruf und Freigabe geänderter Skripte. Der Bereitstellungsdialog öffnet sofort mit Ladeanzeige und ruft nur Formulardaten ab. Bei einem Ladefehler lässt sich der Abruf wiederholen. |
 | Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen, kopierbare Spieladressen, Einzel-/Sammelaktionen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. Hintergrundaktualisierungen erhalten Eingaben und geladene Bilder. |
 | Ressourcen | CPU-/RAM-Grenzen für Docker, RAM-/Speicherüberwachung nativer Server, monatliche Docker-Trafficlimits mit automatischer Sperrung und Monatswechsel. |
