@@ -1,11 +1,11 @@
 <p align="center"><img src="https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/app-icon.svg" width="112" height="112" alt="GSCS app-icon"></p>
 <h1 align="center">GSCS · GameServer Control System</h1>
 <p align="center">Deine Gameserver. Ein Webinterface.</p>
-<p align="center"><a href="https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.6">Herunterladen</a> · <a href="docs/START-HERE.md">Erste Schritte</a> · <a href="https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki">Eigene Spielvorlagen</a> · <a href="https://www.zumbyte.de/support/">Support</a></p>
+<p align="center"><a href="https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.7">Herunterladen</a> · <a href="docs/START-HERE.md">Erste Schritte</a> · <a href="https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki">Eigene Spielvorlagen</a> · <a href="https://www.zumbyte.de/support/">Support</a></p>
 
 **GSCS** verwaltet Gameserver auf Windows- und Linux-Systemen über deinen Browser. Installiere Spiele aus dem Katalog, passe ihre Einstellungen an und behalte Status, Auslastung und Verbindungen im Blick. Ein Master verwaltet deine lokalen Server und zusätzliche Nodes. Für Kundenhosting stehen getrennte Zugänge, Ressourcenlimits und Bestellungen bereit.
 
-**Aktuell: Alpha 5.** Windows x64, Linux x64/ARM64 und Docker x64. Die Laufzeiten für GSCS sind enthalten; ein SDK ist nicht erforderlich. Für SteamCMD und Wine/Proton wird x64 benötigt.
+**Aktuell: Alpha 7.** Windows x64, Linux x64/ARM64 und Docker x64. Die Laufzeiten für GSCS sind enthalten; ein SDK ist nicht erforderlich. Für SteamCMD und Wine/Proton wird x64 benötigt.
 
 Kostenpflichtige GSCS-Lizenzen sind aktuell nicht erhältlich. Mit einem registrierten und bestätigten [Zumbyte-Konto](https://zumbyte.de/licenses/) kannst du im Einrichtungsassistenten eine **kostenlose Testlizenz für 90 Tage** aktivieren. Während der Alpha ist die Verlängerung um jeweils 90 Tage kostenlos. Ohne Lizenz steht ein Gameserver auf localhost zur Verfügung.
 
@@ -25,12 +25,12 @@ Die Screenshots zeigen die Oberfläche mit Beispieldaten. Spielnamen und Bilder 
 
 | Installation | Paket |
 |---|---|
-| Windows x64 · Webinterface und lokaler Node | [Master für Windows](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-master-win-x64.zip) |
-| Linux x64 · Webinterface und lokaler Node | [Master für Linux x64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-master-linux-x64.zip) |
-| Linux ARM64 · Webinterface und lokaler Node | [Master für Linux ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-master-linux-arm64.zip) |
-| Docker x64 | [Image-Archiv](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-docker-universal-linux-x64.tar.gz) · [Compose und Einrichtung](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-docker.zip) |
-| Unraid | [Vorlage, Kanalwahl und Installer](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.6/GSCS-0.1.0-alpha.6-unraid-tools.zip) |
-| Weitere Nodes | [Node-Pakete für Windows und Linux](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.6) |
+| Windows x64 · Webinterface und lokaler Node | [Master für Windows](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.7/GSCS-0.1.0-alpha.7-master-win-x64.zip) |
+| Linux x64 · Webinterface und lokaler Node | [Master für Linux x64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.7/GSCS-0.1.0-alpha.7-master-linux-x64.zip) |
+| Linux ARM64 · Webinterface und lokaler Node | [Master für Linux ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.7/GSCS-0.1.0-alpha.7-master-linux-arm64.zip) |
+| Docker x64 | [Image-Archiv](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.7/GSCS-0.1.0-alpha.7-docker-universal-linux-x64.tar.gz) · [Compose und Einrichtung](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.7/GSCS-0.1.0-alpha.7-docker.zip) |
+| Unraid | [Vorlage, Kanalwahl und Installer](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.7/GSCS-0.1.0-alpha.7-unraid-tools.zip) |
+| Weitere Nodes | [Node-Pakete für Windows und Linux](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.7) |
 
 Unter Windows **start-master.cmd**, unter Linux **bash start-master.sh** ausführen und die Einrichtung im Browser abschließen. Die Dienstinstaller fragen nach Master oder Node, lokaler Ausführung und Datenbank. Zufällige Datenbank-Zugangsdaten werden hinterlegt und am Ende ausgegeben. [Installation und Paketwahl](docs/INSTALLATION.md).
 
@@ -51,7 +51,16 @@ Docker verwendet **ein gemeinsames Image** für Master, Node und isolierte Spiel
 
 Hytale hat einen geführten Anmeldedialog mit Link, Gerätecode und Bestätigungsanzeige. GSCS hält die Anbieteranmeldung aktuell und erstellt eigene Spielsitzungen. Updates werden über GSCS ausgeführt. [Hytale einrichten](docs/HYTALE.md) · [Ports und UPnP](docs/NETWORK.md) · [SteamGridDB einrichten](docs/ARTWORK.md).
 
-## Neu in Alpha 6
+## Neu in Alpha 7
+
+- „Deployen“ öffnet den Bereitstellungsdialog sofort mit Ladeanzeige.
+- GSCS lädt dafür nur die benötigten Formulardaten und verfügbaren Besitzer.
+- Bei einem Ladefehler lässt sich der Abruf direkt wiederholen.
+- Schließen und Vorlagenwechsel brechen den bisherigen Abruf ab. Verspätete Antworten überschreiben keine neuere Auswahl; während des Ladens bleibt die Installation gesperrt.
+
+[Versionshinweise zu Alpha 7](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.7).
+
+## Aus Alpha 6
 
 - Gültige Dezimalwerte blockieren die Bereitstellung nicht mehr. Ganzzahlen, Grenzen und vorgegebene Schrittweiten werden weiter geprüft.
 - Ungültige Eingaben öffnen ihren Tab und nennen Feld und Grund.

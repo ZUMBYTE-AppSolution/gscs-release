@@ -1,8 +1,8 @@
 # GSCS · Downloads und Installation
 
-[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.6) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
+[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.7) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
 
-GSCS verwaltet Gameserver unter Windows und Linux. Dies ist **Alpha-Software**.  [Funktionsstand](docs/FEATURES.md) und [Startanleitung](docs/START-HERE.md) beschreiben die Grenzen.
+GSCS verwaltet Gameserver unter Windows und Linux. Dies ist **Alpha-Software**.  [Funktionsstand](FEATURES.md) und [Startanleitung](START-HERE.md) beschreiben die Grenzen.
 
 ## Pakete
 
@@ -25,7 +25,7 @@ Das gemeinsame Docker-Image wird in dieser Alpha als Download-Datei für x64 ver
 
 **docker.zip** entpacken und **bash load-images.sh** ausführen. Anschließend mit **bash prepare.sh** Master oder Node wählen und den Container mit Compose starten. Für Unraid die enthaltene **docker/unraid/gscs.xml** als Benutzervorlage ablegen und das geladene versionierte Image verwenden. Ein gemeinsamer Container enthält den Master, PostgreSQL und die Spiel-Laufzeiten. Der Node verwendet dasselbe Image und startet nur den Agenten. Isolierte Spielcontainer verwenden ebenfalls dasselbe Image und benötigen den Docker-Socket.
 
-Für die Kanalauswahl direkt bei **Container hinzufügen** gibt es eine Vorlage **GSCS** und die kleine Unraid-Erweiterung [GSCS Kanalwahl](docker/unraid/gscs-channel-selector.plg). Unter **Plugins → Plugin installieren** die Raw-Adresse der `.plg` eintragen. Im Dropdown stehen Alpha, Beta und Release; noch nicht veröffentlichte Kanäle sind deaktiviert. Die Auswahl setzt Repository und Spielserver-Image gemeinsam um. Private GHCR-Kanäle benötigen einen ausdrücklich freigeschalteten GitHub-Zugang. Die versionierten öffentlichen Docker-Downloads lassen sich weiterhin ohne Registry-Anmeldung laden. [Installation und Container-Updates](docs/UNRAID-UPDATES.md).
+Für die Kanalauswahl direkt bei **Container hinzufügen** gibt es eine Vorlage **GSCS** und die kleine Unraid-Erweiterung [GSCS Kanalwahl](../docker/unraid/gscs-channel-selector.plg). Unter **Plugins → Plugin installieren** die Raw-Adresse der `.plg` eintragen. Im Dropdown stehen Alpha, Beta und Release; noch nicht veröffentlichte Kanäle sind deaktiviert. Die Auswahl setzt Repository und Spielserver-Image gemeinsam um. Private GHCR-Kanäle benötigen einen ausdrücklich freigeschalteten GitHub-Zugang. Die versionierten öffentlichen Docker-Downloads lassen sich weiterhin ohne Registry-Anmeldung laden. [Installation und Container-Updates](UNRAID-UPDATES.md).
 
 ## Vorlagen und Lizenz
 
@@ -35,7 +35,7 @@ Ohne Lizenz ist ein eigener Gameserver auf localhost möglich. Kostenpflichtige 
 
 ## Signaturen und Updates
 
-Release- und Laufzeitmanifeste sind mit RSA/SHA-256 signiert. [Öffentlicher Prüfschlüssel](release-public.pem). Beispielsweise mit OpenSSL:
+Release- und Laufzeitmanifeste sind mit RSA/SHA-256 signiert. [Öffentlicher Prüfschlüssel](../release-public.pem). Beispielsweise mit OpenSSL:
 
 ```sh
 openssl dgst -sha256 -verify release-public.pem -signature gscs-manifest.sig gscs-manifest.json
