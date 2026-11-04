@@ -18,8 +18,12 @@ Die private Registry verwendet auf Unraid einen separaten klassischen GitHub-Tok
 
 Nach dem Bereitstellen einer neuen Version unter dem gewählten Kanal findet **Docker → Nach Updates suchen** das neue Image. Vor der Übernahme die auf diesem GSCS-System laufenden Gameserver stoppen und ein Backup erstellen. Das Update erstellt den GSCS-Container mit dem neuen Image und denselben Datenordnern neu. Die Einstellungen im Webinterface, Spielstände, Lizenzen und Datenbank liegen im Datenordner.
 
+Ab Alpha 5 prüft GSCS beim Start, ob die signierten Programmdateien des Images vom bisher installierten Stand abweichen. Dadurch werden neue Programme auch dann übernommen, wenn beide dieselbe Versionsnummer tragen. Das gilt auch für vorhandene Alpha-4-Datenordner. Eine bereits übernommene Anwendung wird beim nächsten Start nicht erneut ersetzt.
+
 Für einen späteren Kanalwechsel den Container bearbeiten und **Updatekanal** ändern. Datenpfad und Host-Datenpfad bleiben identisch. Ein Wechsel auf eine ältere Programmversion ist kein unterstützter Datenbank-Downgrade; dafür ein passendes Backup verwenden. Ohne die Erweiterung sowohl **Repository** als auch **Spielserver-Image** auf `ghcr.io/zumbyte-appsolution/gscs:KANAL` setzen.
 
 Bei der bisherigen Einrichtung mit drei Vorlagen werden die gespeicherten Werte in **GSCS** übernommen und die alten Einträge gesichert. Bestehende Container werden dabei weder neu erstellt noch neu gestartet.
 
 Der GSCS-interne Software-Updater aktualisiert die Anwendung. Ein vollständiges Container-Update erneuert zusätzlich die im Image enthaltenen Laufzeiten und Systempakete. Die Veröffentlichung eines GHCR-Images gibt weder Quellcode noch GitHub-Releaseentwürfe öffentlich frei.
+
+Bei einer eigenen Container-IP über **br0** bleibt dieses Netzwerk erhalten. Die Vorlage bindet **/proc/1/net** schreibgeschützt nach **/run/gscs-host-net** ein, damit GSCS zusätzlich die tatsächliche TCP-/UDP-Belegung des Unraid-Hosts prüfen kann. Bei älteren eigenen Vorlagen diese Pfadzuordnung ergänzen und den Container mit unverändertem Datenpfad neu erstellen. Die Portprüfung wird bei fehlender Hostsicht nicht umgangen.

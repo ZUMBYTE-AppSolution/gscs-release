@@ -2,7 +2,7 @@
 set -euo pipefail
 umask 077
 cd -- "$(dirname -- "$0")"
-version=0.1.0-alpha.4
+version=0.1.0-alpha.5
 for command in curl openssl jq sha256sum docker; do
  command -v "$command" >/dev/null || { printf 'Benötigtes Programm fehlt: %s\n' "$command" >&2;exit 1; }
 done

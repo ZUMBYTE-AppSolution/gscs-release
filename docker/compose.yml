@@ -1,7 +1,7 @@
 name: gscs
 services:
   gscs:
-    image: ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.4
+    image: ghcr.io/zumbyte-appsolution/gscs:0.1.0-alpha.5
     pull_policy: never
     restart: unless-stopped
     network_mode: host
@@ -12,5 +12,6 @@ services:
       GSCS_DOCKER_HOST_ROOT: ${GSCS_HOST_DATA:?Set the absolute host path to the GSCS data directory}
     volumes:
       - ${GSCS_HOST_DATA}:/var/lib/gscs
+      - /proc/1/net:/run/gscs-host-net:ro
       # Optional: enable isolated game containers using the same GSCS image.
       # - /var/run/docker.sock:/var/run/docker.sock

@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/runtime:9.0 AS dotnet9
 FROM mcr.microsoft.com/dotnet/runtime:10.0 AS dotnet10
 FROM postgres:18-trixie AS environment
 ARG TARGETARCH
-ARG GSCS_VERSION=0.1.0-alpha.4
+ARG GSCS_VERSION=0.1.0-alpha.5
 LABEL org.opencontainers.image.title="GSCS" \
  org.opencontainers.image.vendor="ZUMBYTE-AppSolution" \
  org.opencontainers.image.source="https://github.com/ZUMBYTE-AppSolution/gscs"

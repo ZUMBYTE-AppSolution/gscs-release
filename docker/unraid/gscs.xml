@@ -37,6 +37,7 @@
     <Config Name="Master-Adresse" Target="GSCS_MASTER_URL" Default="" Mode="" Description="Nur für Rolle node: HTTPS-Adresse des Masters" Type="Variable" Display="advanced" Required="false" Mask="false" />
     <Config Name="Node-ID" Target="GSCS_NODE_ID" Default="" Mode="" Description="Nur für Rolle node: Registrierung aus dem Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false" />
     <Config Name="Node-Schlüsseldatei" Target="GSCS_AGENT_KEY_FILE" Default="" Mode="" Description="Nur für Rolle node: geschützte Datei mit Registrierungsschlüssel" Type="Variable" Display="advanced" Required="false" Mask="false" />
+    <Config Name="Host-Portprüfung" Target="/run/gscs-host-net" Default="/proc/1/net" Mode="ro" Description="Schreibgeschützte Host-Portbelegung für TCP und UDP, auch bei eigener Container-IP." Type="Path" Display="advanced" Required="false" Mask="false">/proc/1/net</Config>
   </Branch>
   <Branch>
     <Tag>release</Tag>
@@ -52,5 +53,7 @@
     <Config Name="Master-Adresse" Target="GSCS_MASTER_URL" Default="" Mode="" Description="Nur für Rolle node: HTTPS-Adresse des Masters" Type="Variable" Display="advanced" Required="false" Mask="false" />
     <Config Name="Node-ID" Target="GSCS_NODE_ID" Default="" Mode="" Description="Nur für Rolle node: Registrierung aus dem Webinterface" Type="Variable" Display="advanced" Required="false" Mask="false" />
     <Config Name="Node-Schlüsseldatei" Target="GSCS_AGENT_KEY_FILE" Default="" Mode="" Description="Nur für Rolle node: geschützte Datei mit Registrierungsschlüssel" Type="Variable" Display="advanced" Required="false" Mask="false" />
+    <Config Name="Host-Portprüfung" Target="/run/gscs-host-net" Default="/proc/1/net" Mode="ro" Description="Schreibgeschützte Host-Portbelegung für TCP und UDP, auch bei eigener Container-IP." Type="Path" Display="advanced" Required="false" Mask="false">/proc/1/net</Config>
   </Branch>
+  <Config Name="Host-Portprüfung" Target="/run/gscs-host-net" Default="/proc/1/net" Mode="ro" Description="Schreibgeschützte Host-Portbelegung für TCP und UDP, auch bei eigener Container-IP." Type="Path" Display="advanced" Required="false" Mask="false">/proc/1/net</Config>
 </Container>

@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.4
+# GSCS 0.1.0-alpha.5
 
 GSCS ist Alpha-Software. Derzeit sind keine kostenpflichtigen Lizenzen erhältlich. Über ein registriertes Zumbyte-Konto mit bestätigter E-Mail-Adresse kannst du eine kostenlose 90-Tage-Testlizenz mit vollem Funktionsumfang aktivieren. Sie ist an die Hardware gebunden und während der Alpha jeweils kostenlos für 90 Tage ab der Verlängerung erneuerbar. Es entsteht kein kostenpflichtiges Abo.
 
@@ -51,6 +51,8 @@ Lokale Ausführung aktivieren oder einen erreichbaren Node anbinden. In den Syst
 Dienstinstallationen verwenden signierte Updatepakete. Lokale Gameserver und laufende Aufträge vor dem Update beenden. Im Webinterface nach Updates suchen, das Paket vorbereiten und die Zielversion bestätigen. Manuell: **update.ps1 -Latest** bzw. **sudo bash update.sh --latest**. Programmdateien und Datenbank werden gesichert; schlägt der Starttest fehl, versucht der Helfer die vorherige Version samt Datenbank wiederherzustellen.
 
 Portable Installationen: GSCS stoppen, das neue Paket in einen neuen Programmordner entpacken und den unveränderten Datenordner weiterverwenden. Docker: neues Image laden und den GSCS-Container mit denselben Datenordnern neu erstellen.
+
+Ab Alpha 5 prüft GSCS beim Containerstart die signierten Programmdateien des Images. Ein abweichender Programmstand wird auch bei gleicher Versionsnummer übernommen. Vorhandene Benutzer, Lizenzen, Einstellungen und Spielstände bleiben im Datenordner erhalten.
 
 Vor einem Systemwechsel einen verschlüsselten Export anlegen. Alle Server und Agents vor dem Import stoppen. Vorherige Dateien und ein Rücksicherungsarchiv bleiben erhalten. Nach einem Import GSCS neu starten und Node-Zuordnungen prüfen. Hytale-/Software-Lizenzen können auf dem Ziel eine erneute Anmeldung bzw. Aktivierung benötigen.
 

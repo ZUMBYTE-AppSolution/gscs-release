@@ -1,10 +1,10 @@
 # Netzwerk, Erreichbarkeit und UPnP
 
-Ports werden ausschließlich aus dem Pool des jeweiligen Nodes vergeben. Pro Rolle kann ein freier Port gewählt oder automatisch vergeben werden. Reservierungen anderer GSCS-Server, lokale TCP-/UDP-Belegungen und veröffentlichte Docker-Ports werden berücksichtigt. Zusammengehörige Ports werden gemeinsam reserviert. Ein bestehender Server muss zum Ändern seiner Ports gestoppt sein.
+Ports werden ausschließlich aus dem Pool des jeweiligen Nodes vergeben. Pro Rolle kann ein freier Port gewählt oder automatisch vergeben werden. Reservierungen anderer GSCS-Server, lokale TCP-/UDP-Belegungen und veröffentlichte Docker-Ports werden berücksichtigt. Zusammengehörige Ports werden gemeinsam reserviert. Ein bestehender Server muss zum Ändern seiner Ports gestoppt sein. Der Portdialog erklärt gesperrte Eingaben und kann die Belegung erneut prüfen, ohne deine Auswahl zu verwerfen. Ein noch aktiver automatischer Neustart lässt sich dort über „Server stoppen“ beenden.
 
 ## Adresse und Status
 
-Karten und Tabelle zeigen Spieladresse und Port. Unter **Nodes & Laufzeiten** kann eine öffentliche IP-Adresse oder ein Hostname hinterlegt werden. Ohne Vorgabe verwendet GSCS eine bestätigte UPnP-Adresse oder die ermittelte Node-Adresse. Das Kopiersymbol übernimmt die vollständige Adresse.
+Karten und Tabelle zeigen Spieladresse und Port. Unter **Nodes & Laufzeiten** kann eine öffentliche IP-Adresse oder ein Hostname hinterlegt werden. Ohne Vorgabe ermittelt jeder Node seine öffentliche IP im Hintergrund: zunächst über die WAN-Adresse des Routers, anschließend über HTTPS-IP-Dienste. Die Erkennung wird alle 15 Minuten erneuert; Ergebnisse bleiben höchstens eine Stunde gültig. Manuelle Angaben haben Vorrang. Das Kopiersymbol übernimmt die öffentliche Adresse samt zugewiesenem Spielport; die LAN-Adresse steht bei Bedarf im Tooltip.
 
 Prozessstatus und Spielabfrage werden getrennt angezeigt. GSCS unterstützt Source A2S, Minecraft Java, Bedrock RakNet, FiveM/RedM und Hytale QUIC. Eine Hytale-QUIC-Antwort bestätigt das Protokoll, liefert aber keine Spielerzahl. Bei anderen TCP-Profilen bestätigt ein erfolgreicher Verbindungsaufbau nur den Port. Ohne passendes Abfrageprotokoll wird keine Spielantwort behauptet.
 
@@ -25,3 +25,5 @@ Starten, Stoppen, Neustarten, Aktualisieren und Konfigurieren stehen pro Server 
 Spielbilder werden im Hintergrund geladen und auf dem Master zwischengespeichert. Der Browser speichert vorhandene Bilder einen Tag lokal und kann sie danach über ETag erneut bestätigen. Fehlende oder langsame Bilder blockieren die Bedienung nicht. Karten und kompakte Tabellenzeilen verwenden dasselbe Titelbild.
 
 Die Übersicht lädt Status und Aufträge auch bei geöffneten Dialogen asynchron nach. Ungespeicherte Formulare bleiben erhalten. Start, Stopp, Neustart, Installation, Sicherung und Updates zeigen eine animierte Meldung bis zum Ergebnis; diese bleibt über Dialogen sichtbar und läuft nach dem Schließen des Auftragsfensters weiter. Bildabrufe besitzen ein getrenntes Anfragelimit und können die Steuerung oder Node-Signale nicht aufbrauchen.
+
+Bei einer eigenen Container-IP über **br0** bleibt dieses Netzwerk erhalten. Die Vorlage bindet **/proc/1/net** schreibgeschützt nach **/run/gscs-host-net** ein, damit GSCS zusätzlich die tatsächliche TCP-/UDP-Belegung des Unraid-Hosts prüfen kann. Bei älteren eigenen Vorlagen diese Pfadzuordnung ergänzen und den Container mit unverändertem Datenpfad neu erstellen. Die Portprüfung wird bei fehlender Hostsicht nicht umgangen.

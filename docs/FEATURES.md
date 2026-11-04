@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.4
+# GSCS 0.1.0-alpha.5
 
 Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
 
@@ -36,3 +36,9 @@ Referenzsystem-Installationen unter Windows/Linux, längerer Hytale-Betrieb, pro
 Spielbilder lassen sich über SteamGridDB automatisch per Steam-ID oder Spielname beziehen. Der API-Schlüssel wird verschlüsselt auf dem Master gespeichert. [Einrichtung und Cache](ARTWORK.md).
 
 Native Linux-Starts verwenden bereits ausführbare Systemprogramme und Java-Laufzeiten unverändert. Fehlende Ausführungsrechte ergänzt GSCS ausschließlich an eigenen Serverdateien und Laufzeit-Downloads; vorhandene Lese- und Schreibrechte bleiben erhalten.
+
+Docker-Updates vergleichen die signierten Programmstände auch bei gleicher Versionsnummer; ein älteres Image löst keinen automatischen Downgrade aus. Die Startprüfung und Wiederaufnahme einer unterbrochenen Übernahme prüfen das erwartete Manifest. Die Unraid-Vorlage stellt die Host-Portansicht auch für eigene br0-Container-IP-Adressen schreibgeschützt bereit.
+
+Jeder Node ermittelt seine öffentliche IP im Hintergrund über UPnP oder feste HTTPS-Adressdienste und übermittelt sie mit seinem Status. Die Erkennung öffnet keine Routerports. Manuell eingetragene öffentliche Adressen haben Vorrang. Eine öffentliche IP belegt keine Erreichbarkeit aus dem Internet; Port- und Spielabfragen bleiben davon getrennt.
+
+Die ausgelieferten Webinterface-Dateien verwenden an den Programmstand und Dateiinhalt gebundene URLs. Browser prüfen HTML, JavaScript und CSS erneut, damit Updates keine veraltete Oberfläche weiterverwenden. Der Cache für Spielbilder bleibt erhalten.
