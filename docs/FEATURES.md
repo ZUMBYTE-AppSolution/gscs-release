@@ -8,11 +8,11 @@ Private Testversion. Die Pakete enthalten Master, Node und die benötigten Progr
 | Docker / Unraid | Ein gemeinsames Image. Der Master startet mit interner PostgreSQL-Datenbank in einem Container. Dieselbe Datei dient als Node oder als isolierter Spielcontainer. |
 | Laufzeiten | Native Prozesse, Wine, Proton und WSL; Java, .NET und Mono. Kundenserver benötigen isolierte Spielcontainer. SteamCMD und Wine/Proton setzen x64 voraus. |
 | Serververwaltung | Installation, Start, Stopp, Neustart, Konsole, RCON, Workshop, automatische Updates und Crash-Neustarts mit begrenzten Wiederholungen. |
-| Konfiguration | 230 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
+| Konfiguration | 231 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
 | Deployment | Wizard, freier JSON-Editor, Import eigener Profile sowie einstellbarer GitHub-Katalog mit automatischem Abruf und Freigabe geänderter Skripte. |
 | Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. |
 | Ressourcen | CPU-/RAM-Grenzen für Docker, RAM-/Speicherüberwachung nativer Server, monatliche Docker-Trafficlimits mit automatischer Sperrung und Monatswechsel. |
-| Netzwerk | Portbereiche pro Node, IP und TCP/UDP, atomare Portreservierung, Portoffsets sowie TCP-/UDP-Weiterleitung für WSL. |
+| Netzwerk | Freie Portwahl innerhalb der Pools pro Node, IP und TCP/UDP; Belegungsprüfung für Systemdienste und Docker, atomare Reservierung und Änderung bei gestoppten Servern, Portoffsets sowie TCP-/UDP-Weiterleitung für WSL. |
 | Backups | Verschlüsselte Sicherungen, vollständige Integritätsprüfung, geschützter Restore, automatische externe S3-Kopien, Aufbewahrung und angeheftete Sicherungen. Wine-/Proton-Spielstände werden mitgesichert. |
 | Systemwechsel | Verschlüsselter Systemexport mit Datenbank und optionalen Dateien, Vorschau vor Import, Rücksicherung sowie verschlüsselter Node-Umzug mit Fortschritt, Abbruch und Rückkehr bei Fehlern. |
 | Hosting | Kundenrollen, Paketkarten, Preis-/Ressourcensnapshots, bestätigte Bestellungen, Bereitstellung, PayPal-Abos und Verlängerungen, Kündigung zum Laufzeitende, Zahlungsbelege und Zahlungsausfallsperren. Stripe und WHMCS sind zusätzlich angebunden. |

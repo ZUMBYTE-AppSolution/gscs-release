@@ -44,7 +44,7 @@ Zuerst eine passende Lizenz auf dem Master aktivieren und im Bereich **Nodes & L
 
 Lokale Ausführung aktivieren oder einen erreichbaren Node anbinden. In den Systemeinstellungen TCP-/UDP-Portbereiche für diesen Node anlegen. Danach unter **Bereitstellung** eine freigegebene Vorlage auswählen und den Server erstellen.
 
-230 Profile sind enthalten. Die Konfiguration ist nach Bereichen gegliedert; je Spiel stehen passende Felder und Zugangsdaten zur Verfügung. Die Strukturprüfung belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale besitzt getrennte geführte Anmeldedialoge für Downloader und Serveranbieter.
+231 Profile sind enthalten. Die Konfiguration ist nach Bereichen gegliedert; je Spiel stehen passende Felder und Zugangsdaten zur Verfügung. Die Strukturprüfung belegt keine erfolgreichen Live-Starts aller Spiele. Spielabhängige Konten, Tokens und Zusatzdateien sind gesondert nötig. Hytale besitzt getrennte geführte Anmeldedialoge für Downloader und Serveranbieter.
 
 ## Updates und Sicherungen
 
