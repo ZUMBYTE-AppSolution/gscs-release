@@ -1,6 +1,6 @@
-# GSCS 0.1.0-alpha.3
+# GSCS 0.1.0-alpha.4
 
-Private Testversion. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
+Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
 
 | Bereich | Funktionen |
 |---|---|
@@ -10,9 +10,9 @@ Private Testversion. Die Pakete enthalten Master, Node und die benötigten Progr
 | Serververwaltung | Installation, Start, Stopp, Neustart, Konsole, RCON, Workshop, automatische Updates und Crash-Neustarts mit begrenzten Wiederholungen. |
 | Konfiguration | 231 Profile mit kategorisierten Eingabefeldern, Dateizuordnung und plattformabhängigen Startparametern. Eigene Startskripte mit getrennten Rechten und Änderungshistorie bleiben bei Updates erhalten. |
 | Deployment | Wizard, freier JSON-Editor, Import eigener Profile sowie einstellbarer GitHub-Katalog mit automatischem Abruf und Freigabe geänderter Skripte. |
-| Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. |
+| Monitoring | Serverkarten und Tabellen, CPU/RAM/Speicher, Prozessbäume, Spielabfragen, kopierbare Spieladressen, Einzel-/Sammelaktionen und Messverläufe. Node-Karten zeigen zusätzlich Netzwerkraten, Laufzeit, Kapazität und Erreichbarkeit. |
 | Ressourcen | CPU-/RAM-Grenzen für Docker, RAM-/Speicherüberwachung nativer Server, monatliche Docker-Trafficlimits mit automatischer Sperrung und Monatswechsel. |
-| Netzwerk | Freie Portwahl innerhalb der Pools pro Node, IP und TCP/UDP; Belegungsprüfung für Systemdienste und Docker, atomare Reservierung und Änderung bei gestoppten Servern, Portoffsets sowie TCP-/UDP-Weiterleitung für WSL. |
+| Netzwerk | Freie Portwahl innerhalb der Pools pro Node, IP und TCP/UDP; Belegungsprüfung für Systemdienste und Docker, atomare Reservierung und Änderung bei gestoppten Servern, Portoffsets, bestätigte UPnP-Routerfreigaben mit Erneuerung und Bereinigung sowie TCP-/UDP-Weiterleitung für WSL. |
 | Backups | Verschlüsselte Sicherungen, vollständige Integritätsprüfung, geschützter Restore, automatische externe S3-Kopien, Aufbewahrung und angeheftete Sicherungen. Wine-/Proton-Spielstände werden mitgesichert. |
 | Systemwechsel | Verschlüsselter Systemexport mit Datenbank und optionalen Dateien, Vorschau vor Import, Rücksicherung sowie verschlüsselter Node-Umzug mit Fortschritt, Abbruch und Rückkehr bei Fehlern. |
 | Hosting | Kundenrollen, Paketkarten, Preis-/Ressourcensnapshots, bestätigte Bestellungen, Bereitstellung, PayPal-Abos und Verlängerungen, Kündigung zum Laufzeitende, Zahlungsbelege und Zahlungsausfallsperren. Stripe und WHMCS sind zusätzlich angebunden. |
@@ -30,3 +30,9 @@ Die Profile wurden auf das GSCS-Format übertragen und strukturell geprüft. Das
 Native Prozesse haben keine gleichwertige CPU-Begrenzung oder Mandantentrennung wie Docker. Für Kundenhosting Docker verwenden. SFTP, Zahlungs-, Speicher- und Netzwerkprovider benötigen ihre Zugangsdaten. Die tatsächliche DDoS-Abwehr erfolgt beim Netzwerkprovider.
 
 Referenzsystem-Installationen unter Windows/Linux, längerer Hytale-Betrieb, produktive Zahlungsanbieter und reale externe Speicher sind gesondert zu prüfen. Zahlungsbelege ersetzen keine steuerliche Rechnung; dafür kann das eigene Abrechnungssystem angebunden werden.
+
+[Ports, Spielabfragen und UPnP](NETWORK.md).
+
+Spielbilder lassen sich über SteamGridDB automatisch per Steam-ID oder Spielname beziehen. Der API-Schlüssel wird verschlüsselt auf dem Master gespeichert. [Einrichtung und Cache](ARTWORK.md).
+
+Native Linux-Starts verwenden bereits ausführbare Systemprogramme und Java-Laufzeiten unverändert. Fehlende Ausführungsrechte ergänzt GSCS ausschließlich an eigenen Serverdateien und Laufzeit-Downloads; vorhandene Lese- und Schreibrechte bleiben erhalten.

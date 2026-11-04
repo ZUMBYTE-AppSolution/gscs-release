@@ -1,48 +1,82 @@
-# GSCS · Downloads und Installation
+<p align="center"><img src="https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/app-icon.svg" width="112" height="112" alt="GSCS app-icon"></p>
+<h1 align="center">GSCS · GameServer Control System</h1>
+<p align="center">Deine Gameserver. Ein Webinterface.</p>
+<p align="center"><a href="https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.4">Herunterladen</a> · <a href="docs/START-HERE.md">Erste Schritte</a> · <a href="https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki">Eigene Spielvorlagen</a> · <a href="https://www.zumbyte.de/support/">Support</a></p>
 
-[Aktueller Alpha-Release](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.4) · [Spielvorlagen](https://github.com/ZUMBYTE-AppSolution/gscs-deployment) · [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
+**GSCS** verwaltet Gameserver auf Windows- und Linux-Systemen über deinen Browser. Installiere Spiele aus dem Katalog, passe ihre Einstellungen an und behalte Status, Auslastung und Verbindungen im Blick. Ein Master verwaltet deine lokalen Server und zusätzliche Nodes. Für Kundenhosting stehen getrennte Zugänge, Ressourcenlimits und Bestellungen bereit.
 
-GSCS verwaltet Gameserver unter Windows und Linux. Dies ist **Alpha-Software**.  [Funktionsstand](docs/FEATURES.md) und [Startanleitung](docs/START-HERE.md) beschreiben die Grenzen.
+**Aktuell: Alpha 4.** Windows x64, Linux x64/ARM64 und Docker x64. Die Laufzeiten für GSCS sind enthalten; ein SDK ist nicht erforderlich. Für SteamCMD und Wine/Proton wird x64 benötigt.
 
-## Pakete
+Kostenpflichtige GSCS-Lizenzen sind aktuell nicht erhältlich. Mit einem registrierten und bestätigten [Zumbyte-Konto](https://zumbyte.de/licenses/) kannst du im Einrichtungsassistenten eine **kostenlose Testlizenz für 90 Tage** aktivieren. Während der Alpha ist die Verlängerung um jeweils 90 Tage kostenlos. Ohne Lizenz steht ein Gameserver auf localhost zur Verfügung.
 
-| Paket | Verwendung |
+## Einblicke
+
+![GSCS Gameserver: Spielbilder, Adressen und Schnellaktionen](https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/screenshots/gameservers-cards.png)
+
+| Kompakte Serverliste | Nodes und Laufzeiten |
 |---|---|
-| master-win-x64.zip | Windows mit Webinterface und portabler Datenbank |
-| node-win-x64.zip | Windows-Agent ohne Webinterface |
-| master-linux-x64 / master-linux-arm64 | Linux mit Webinterface; ZIP und TAR.GZ |
-| node-linux-x64 / node-linux-arm64 | Linux-Agent; ZIP und TAR.GZ |
-| installers.zip | Windows-/Debian-/Ubuntu-Dienstinstaller, PostgreSQL und Updatehelfer |
-| docker.zip | Compose, Passwortvorbereitung und Unraid-Template |
+| ![GSCS Serverliste mit Spielbildern und Sammelaktionen](https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/screenshots/gameservers-list.png) | ![GSCS Nodes mit Auslastung und verfügbaren Laufzeiten](https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/screenshots/nodes.png) |
 
-Alle Anwendungspakete enthalten die benötigte .NET-Laufzeit. Ein SDK ist nicht erforderlich. Master starten mit **start-master.cmd** bzw. **bash start-master.sh**. Die weitere Einrichtung erfolgt im Webinterface. Installer fragen nach Master/Node und lokaler Spielausführung. PostgreSQL-Zugangsdaten werden zufällig erzeugt, bereits hinterlegt und am Ende angezeigt. Nodes benötigen keine Verwaltungsdatenbank.
+![GSCS Deployment-Katalog mit kategorisierten Spielvorlagen](https://raw.githubusercontent.com/ZUMBYTE-AppSolution/gscs-release/main/assets/screenshots/deployments.png)
 
-Die Dienstinstaller sowie deren Update-/Rollback-Abläufe sind in dieser Alpha noch nicht auf allen sauberen Referenzsystemen geprüft. Für den ersten Test sind die portablen Pakete und Docker vorgesehen. SteamCMD-Spiele benötigen x64.
+Die Screenshots zeigen die Oberfläche mit Beispieldaten. Spielnamen und Bilder gehören ihren jeweiligen Rechteinhabern.
 
-## Docker und Unraid
+## Downloads
 
-Das gemeinsame Docker-Image wird in dieser Alpha als Download-Datei für x64 verteilt. Eine Anmeldung an einer Container-Registry ist nicht erforderlich. Die Image-Namen im Compose-Paket werden durch `docker load` lokal bereitgestellt.
+| Installation | Paket |
+|---|---|
+| Windows x64 · Webinterface und lokaler Node | [Master für Windows](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.4/GSCS-0.1.0-alpha.4-master-win-x64.zip) |
+| Linux x64 · Webinterface und lokaler Node | [Master für Linux x64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.4/GSCS-0.1.0-alpha.4-master-linux-x64.zip) |
+| Linux ARM64 · Webinterface und lokaler Node | [Master für Linux ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.4/GSCS-0.1.0-alpha.4-master-linux-arm64.zip) |
+| Docker x64 | [Image-Archiv](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.4/GSCS-0.1.0-alpha.4-docker-universal-linux-x64.tar.gz) · [Compose und Einrichtung](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.4/GSCS-0.1.0-alpha.4-docker.zip) |
+| Unraid | [Vorlage, Kanalwahl und Installer](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.4/GSCS-0.1.0-alpha.4-unraid-tools.zip) |
+| Weitere Nodes | [Node-Pakete für Windows und Linux](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.4) |
 
-**docker.zip** entpacken und **bash load-images.sh** ausführen. Anschließend mit **bash prepare.sh** Master oder Node wählen und den Container mit Compose starten. Für Unraid die enthaltene **docker/unraid/gscs.xml** als Benutzervorlage ablegen und das geladene versionierte Image verwenden. Ein gemeinsamer Container enthält den Master, PostgreSQL und die Spiel-Laufzeiten. Der Node verwendet dasselbe Image und startet nur den Agenten. Isolierte Spielcontainer verwenden ebenfalls dasselbe Image und benötigen den Docker-Socket.
+Unter Windows **start-master.cmd**, unter Linux **bash start-master.sh** ausführen und die Einrichtung im Browser abschließen. Die Dienstinstaller fragen nach Master oder Node, lokaler Ausführung und Datenbank. Zufällige Datenbank-Zugangsdaten werden hinterlegt und am Ende ausgegeben. [Installation und Paketwahl](docs/INSTALLATION.md).
 
-Für die Kanalauswahl direkt bei **Container hinzufügen** gibt es eine Vorlage **GSCS** und die kleine Unraid-Erweiterung [GSCS Kanalwahl](docker/unraid/gscs-channel-selector.plg). Unter **Plugins → Plugin installieren** die Raw-Adresse der `.plg` eintragen. Im Dropdown stehen Alpha, Beta und Release; noch nicht veröffentlichte Kanäle sind deaktiviert. Die Auswahl setzt Repository und Spielserver-Image gemeinsam um. Private GHCR-Kanäle benötigen einen ausdrücklich freigeschalteten GitHub-Zugang. Die versionierten öffentlichen Docker-Downloads lassen sich weiterhin ohne Registry-Anmeldung laden. [Installation und Container-Updates](docs/UNRAID-UPDATES.md).
+Docker verwendet **ein gemeinsames Image** für Master, Node und isolierte Spielcontainer. Der Master enthält PostgreSQL. Für Unraid stehen Vorlage und Kanal-Dropdown für Alpha, Beta und Release bereit; noch nicht verfügbare Kanäle bleiben deaktiviert. Das Image-Archiv lässt sich ohne Registry-Konto laden. Private GHCR-Updates setzen einen freigeschalteten GitHub-Zugang voraus. [Unraid einrichten und aktualisieren](docs/UNRAID-UPDATES.md).
 
-## Vorlagen und Lizenz
+## Deine Server verwalten
 
-230 Profile mit kategorisierten Konfigurationsfeldern sind enthalten. Für eigene Definitionen gibt es einen Wizard, einen JSON-Editor und das [Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki). Erfolgreiche Live-Starts aller Spiele werden damit nicht behauptet.
+| Bereich | Möglichkeiten |
+|---|---|
+| Spiele und Konfiguration | 231 Gameserver-Profile, nach Namen sortiert. Kategorisierte Einstellungen, SteamCMD, Workshop, Mods und automatisch erzeugte Startskripte. Eigene Startskripte bleiben bei Updates erhalten. |
+| Steuerung | Start, Stopp, Neustart, Update und Konfiguration pro Server oder gemeinsam. Animierte Auftragsmeldungen bleiben auch über geöffneten Dialogen sichtbar. Konsole, RCON, Zeitpläne und Crash-Neustarts. |
+| Nodes und Laufzeiten | Windows und Linux, native Prozesse, Docker, Wine, Proton und WSL. Node-Karten mit CPU, RAM, Speicher, Netzwerkraten und Kapazität. |
+| Netzwerk | Freie Portwahl innerhalb der Node-Pools, TCP/UDP, Belegungsprüfung und atomare Reservierungen. UPnP mit Routerbestätigung, Erneuerung und Bereinigung. Spieladressen zum Kopieren und getrennte Prozess-/Spielabfragen. |
+| Backups und Umzug | Verschlüsselte Sicherungen, geschützter Restore, externe S3-Kopien, Systemexport mit Datenbank und optionalen Dateien sowie Node-Umzug. |
+| Eigene Vorlagen | Wizard und freier Editor, Konfigurationsfelder und Tabs, eigene GitHub-Kataloge und Freigabe geänderter Skripte. [Profil-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki). |
+| Benutzer und Hosting | Rollen, einzelne Serverfreigaben, Kundenkonten und Hostingpakete. Docker-Ressourcenlimits, Bestellungen und Zahlungsanbieter-Anbindungen. |
+| Zugriff und Betrieb | 2FA, Passkeys, OIDC, API-Tokens, Auditprotokoll, Statusseite, Webhooks und Benachrichtigungen. |
 
-Ohne Lizenz ist ein eigener Gameserver auf localhost möglich. Kostenpflichtige Lizenzen sind derzeit nicht erhältlich. Bei der Ersteinrichtung kannst du über ein registriertes Zumbyte-Konto eine kostenlose 90-Tage-Testlizenz mit unbegrenzten Gameservern, Nodes und Hosting-Kunden aktivieren. Die bestätigte E-Mail-Adresse und die Hardware werden zugeordnet. Während der Alpha lässt sich dieselbe Testlizenz kostenlos jeweils für 90 Tage ab der Verlängerung erneuern. Es entsteht kein kostenpflichtiges Abo. Vorhandene Codes werden zusammen mit der E-Mail-Adresse unter **Systemeinstellungen > Lizenz** hinterlegt. [Testlizenz und Tarife](https://zumbyte.de/licenses/).
+Hytale hat einen geführten Anmeldedialog mit Link, Gerätecode und Bestätigungsanzeige. GSCS hält die Anbieteranmeldung aktuell und erstellt eigene Spielsitzungen. Updates werden über GSCS ausgeführt. [Hytale einrichten](docs/HYTALE.md) · [Ports und UPnP](docs/NETWORK.md) · [SteamGridDB einrichten](docs/ARTWORK.md).
 
-## Signaturen und Updates
+## Neu in Alpha 4
 
-Release- und Laufzeitmanifeste sind mit RSA/SHA-256 signiert. [Öffentlicher Prüfschlüssel](release-public.pem). Beispielsweise mit OpenSSL:
+- Portbereiche, Node-Daten und Bearbeitungsformulare speichern wieder zuverlässig; der Einrichtungsassistent lässt sich fortsetzen und erneut öffnen.
+- Portwahl innerhalb des Pools einschließlich System-/Docker-Belegung und sicherer Änderung bestehender Zuweisungen.
+- Echte UPnP-Freigaben für TCP und UDP mit Rückprüfung am Router.
+- Spieladresse und tatsächliche Protokollabfrage in Karten und Liste, Einzel- und Sammelaktionen einschließlich Update mit vorheriger Sicherung.
+- Status wird auch bei geöffneten Dialogen im Hintergrund aktualisiert; ungespeicherte Eingaben bleiben erhalten. Serveraktionen zeigen ihren Fortschritt bis zur Bestätigung oder zum Fehler.
+- Spielbilder als Karten- und Listenhintergrund; SteamGridDB-Zuordnung über Steam-ID oder Spielname; Cache auf dem Master und im Browser. Langsame Bildquellen blockieren die Bedienung nicht.
+- Native Linux-Starts ändern die Rechte bereits ausführbarer Systemprogramme und Java-Laufzeiten nicht mehr. Fehlende Ausführungsrechte werden nur in verwalteten Serververzeichnissen ergänzt.
+- Korrigierte Lizenzaktivierung, Proton-Pfaderkennung und Hytale-Geräteanmeldung. Wartungsfenster lassen sich abschalten.
+- Aktueller Katalog mit 231 Gameserver-Profilen und Unraid-Vorlage mit Kanalwahl.
 
-```sh
-openssl dgst -sha256 -verify release-public.pem -signature gscs-manifest.sig gscs-manifest.json
-```
+[Versionshinweise](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.4) · [Vollständiger Funktionsstand](docs/FEATURES.md).
 
-Dienstinstallationen können Updates im Webinterface vorbereiten und übernehmen. Vorher alle Gameserver und Aufträge beenden. Portable Installationen durch ein neu entpacktes Paket mit demselben Datenordner aktualisieren; Docker durch ein neues Image mit denselben Datenordnern. Vor Versions- oder Systemwechseln einen verschlüsselten Systemexport und eine externe Datensicherung anlegen.
+## Updates und Alpha-Stand
 
-Spielnamen, Logos und Spielserver gehören ihren jeweiligen Rechteinhabern. Es werden keine proprietären Spielserverdateien verteilt. GSCS wird unter einer Nutzungslizenz angeboten; dieses Repository enthält Download- und Installationsmaterial.
+Vor einem Versions- oder Systemwechsel eine externe Sicherung und einen verschlüsselten Systemexport erstellen. Dienstinstallationen bereiten Updates im Webinterface vor; portable Pakete werden vollständig neu entpackt und mit dem vorhandenen Datenordner gestartet. Docker wird über ein neues Image mit denselben Datenordnern aktualisiert.
 
-Unter Unraid für Spieldateien einen direkten Pool-/Datenträgerpfad verwenden, etwa **/mnt/cache/appdata/gscs** oder **/mnt/disk1/appdata/gscs**. Ältere 32-Bit-Spiele können über **/mnt/user** wegen der Dateisystem-Inodes fehlschlagen. Datenpfad und Host-Datenpfad im Unraid-Template müssen übereinstimmen.
+Release-Manifeste und Programmdateien sind mit RSA/SHA-256 signiert. Prüfsummen und der [öffentliche Prüfschlüssel](release-public.pem) werden mitgeliefert. Eine Windows-Authenticode-Signatur ist derzeit nicht enthalten.
+
+Die Alpha wird weiter erprobt. Die enthaltenen Profile sind kein Startnachweis aller Spiele; Laufzeiten und Spielberechtigungen hängen vom jeweiligen Anbieter ab. Native ARM64-Ausgaben sind gebaut, aber noch nicht auf ARM64-Hardware geprüft. Dienstinstaller, WSL, längerer Spielbetrieb und produktive Zahlungsanbieter benötigen weitere Referenztests. Eine erfolgreiche Spielabfrage vom Node bestätigt keine Erreichbarkeit aus dem Internet. Der konkrete Prüfumfang steht im Release unter **VERIFICATION.md**.
+
+## Hilfe und Lizenz
+
+[Fehler melden](https://github.com/ZUMBYTE-AppSolution/gscs-release/issues) · [Support](https://www.zumbyte.de/support/) · [Deployment-Wiki](https://github.com/ZUMBYTE-AppSolution/gscs-deployment/wiki)
+
+GSCS ist proprietäre Software von **Zumbyte - AppSolution**. Der Quellcode und die GHCR-Images sind privat; dieses Repository enthält die öffentlichen Installpakete, Vorlagen und Dokumentation. Lizenzen mitgelieferter Komponenten liegen in den Paketen. Es werden keine proprietären Spielserverdateien verteilt.
+
+**[www.zumbyte.de](https://www.zumbyte.de/)** · [Datenschutz](https://www.zumbyte.de/datenschutz/) · [Impressum](https://www.zumbyte.de/impressum/)
