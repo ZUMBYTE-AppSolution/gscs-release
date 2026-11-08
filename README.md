@@ -5,7 +5,7 @@
 
 **GSCS** verwaltet Gameserver auf Windows- und Linux-Systemen über deinen Browser. Installiere Spiele aus dem Katalog, passe ihre Einstellungen an und behalte Status, Auslastung und Verbindungen im Blick. Ein Master verwaltet deine lokalen Server und zusätzliche Nodes. Für Kundenhosting stehen getrennte Zugänge, Ressourcenlimits und Bestellungen bereit.
 
-**Aktuell: Alpha 10.** Windows x64, Linux x64/ARM64 und Docker x64. Die Laufzeiten für GSCS sind enthalten; ein SDK ist nicht erforderlich. Für SteamCMD und Wine/Proton wird x64 benötigt.
+**Aktuell: Alpha 10.** Windows x64, Linux x64/ARM64 und Docker x64/ARM64. Die Laufzeiten für GSCS sind enthalten; ein SDK ist nicht erforderlich. Für SteamCMD und Wine/Proton wird x64 benötigt.
 
 Kostenpflichtige GSCS-Lizenzen sind aktuell nicht erhältlich. Mit einem registrierten und bestätigten [Zumbyte-Konto](https://zumbyte.de/licenses/) kannst du im Einrichtungsassistenten eine **kostenlose Testlizenz für 90 Tage** aktivieren. Während der Alpha ist die Verlängerung um jeweils 90 Tage kostenlos. Ohne Lizenz steht ein Gameserver auf localhost zur Verfügung.
 
@@ -31,6 +31,7 @@ Die Screenshots zeigen die Oberfläche mit Beispieldaten. Spielnamen und Bilder 
 | Linux x64 · Webinterface und lokaler Node | [Master für Linux x64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.10/GSCS-0.1.0-alpha.10-master-linux-x64.zip) |
 | Linux ARM64 · Webinterface und lokaler Node | [Master für Linux ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.10/GSCS-0.1.0-alpha.10-master-linux-arm64.zip) |
 | Docker x64 | [Image-Archiv](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.10/GSCS-0.1.0-alpha.10-docker-universal-linux-x64.tar.gz) · [Compose und Einrichtung](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.10/GSCS-0.1.0-alpha.10-docker.zip) |
+| Docker ARM64 | [Image-Archiv für ARM64](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.10/GSCS-0.1.0-alpha.10-docker-universal-linux-arm64.tar.gz) |
 | Unraid | [Vorlage, Kanalwahl und Installer](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/download/v0.1.0-alpha.10/GSCS-0.1.0-alpha.10-unraid-tools.zip) |
 | Weitere Nodes | [Node-Pakete für Windows und Linux](https://github.com/ZUMBYTE-AppSolution/gscs-release/releases/tag/v0.1.0-alpha.10) |
 
@@ -130,7 +131,7 @@ Vor einem Versions- oder Systemwechsel eine externe Sicherung und einen verschl�
 
 Release-Manifeste und Programmdateien sind mit RSA/SHA-256 signiert. Prüfsummen und der [öffentliche Prüfschlüssel](release-public.pem) werden mitgeliefert. Eine Windows-Authenticode-Signatur ist derzeit nicht enthalten.
 
-Die Alpha wird weiter erprobt. Die enthaltenen Profile sind kein Startnachweis aller Spiele; Laufzeiten und Spielberechtigungen hängen vom jeweiligen Anbieter ab. Native ARM64-Ausgaben sind gebaut, aber noch nicht auf ARM64-Hardware geprüft. Dienstinstaller, WSL, längerer Spielbetrieb und produktive Zahlungsanbieter benötigen weitere Referenztests. Eine erfolgreiche Spielabfrage vom Node bestätigt keine Erreichbarkeit aus dem Internet. Der konkrete Prüfumfang steht im Release unter **VERIFICATION.md**.
+Die Alpha wird weiter erprobt. Die enthaltenen Profile sind kein Startnachweis aller Spiele; Laufzeiten und Spielberechtigungen hängen vom jeweiligen Anbieter ab. Die Docker-Images wurden auf x64 und ARM64 mit vollständigem Container-Neustart und Datenerhalt geprüft; das bestätigt keine Live-Starts aller Spiele. Dienstinstaller, WSL, längerer Spielbetrieb und produktive Zahlungsanbieter benötigen weitere Referenztests. Eine erfolgreiche Spielabfrage vom Node bestätigt keine Erreichbarkeit aus dem Internet. Der konkrete Prüfumfang steht im Release unter **VERIFICATION.md**.
 
 ## Hilfe und Lizenz
 

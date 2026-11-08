@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "repository": "ghcr.io/zumbyte-appsolution/gscs",
   "channels": {
-    "alpha": {"available": true, "version": "0.1.0-alpha.6"},
+    "alpha": {"available": true, "version": "0.1.0-alpha.10"},
     "beta": {"available": false},
     "release": {"available": false}
   }
