@@ -7,7 +7,7 @@ on:
         required: true
         type: string
 permissions:
-  contents: read
+  contents: write
   packages: write
 concurrency:
   group: gscs-publish-images
@@ -45,4 +45,9 @@ jobs:
           docker buildx imagetools create --tag "$IMAGE:${TAG#v}" "${refs[@]}"
           docker buildx imagetools inspect "$IMAGE:${TAG#v}"
           docker buildx imagetools create --tag "$IMAGE:alpha" "${refs[@]}"
+          docker buildx imagetools inspect "$IMAGE:alpha"
+          docker buildx imagetools inspect "$IMAGE:${TAG#v}" --raw > version-index.json
+          docker buildx imagetools inspect "$IMAGE:alpha" --raw > alpha-index.json
+          cmp version-index.json alpha-index.json
+          jq -e '[.manifests[].platform | select(.os == "linux") | .architecture] | sort == ["amd64", "arm64"]' alpha-index.json
           [[ $(gh api /orgs/ZUMBYTE-AppSolution/packages/container/gscs --jq .visibility) = private ]] || exit 2
