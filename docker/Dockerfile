@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/runtime:9.0 AS dotnet9
 FROM mcr.microsoft.com/dotnet/runtime:10.0 AS dotnet10
 FROM postgres:18-trixie AS environment
 ARG TARGETARCH
-ARG GSCS_VERSION=0.1.0-alpha.6
+ARG GSCS_VERSION=0.1.0-alpha.10
 LABEL org.opencontainers.image.title="GSCS" \
  org.opencontainers.image.vendor="ZUMBYTE-AppSolution" \
  org.opencontainers.image.source="https://github.com/ZUMBYTE-AppSolution/gscs"
@@ -36,6 +36,7 @@ COPY unified-entrypoint.sh /usr/local/bin/gscs-entrypoint
 COPY start-panel.sh /usr/local/bin/gscs-start-panel
 COPY healthcheck.sh /usr/local/bin/gscs-healthcheck
 COPY watch-updates.sh /usr/local/bin/gscs-watch-updates
+COPY maintenance-restart.sh /usr/local/bin/gscs-maintenance-restart
 COPY runtime-entrypoint.sh /usr/local/bin/gscs-game-entrypoint
 COPY install-proton.sh /usr/local/bin/gscs-install-proton
 RUN if [ "$TARGETARCH" = amd64 ];then bash /usr/local/bin/gscs-install-proton /opt/gscs-proton;fi

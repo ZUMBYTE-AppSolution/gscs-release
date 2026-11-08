@@ -56,6 +56,10 @@ GSCS-Backups bleiben erhalten. Über **Gameserver → Entfernte Server → Wiede
 
 Ein zugehöriger Hostingvertrag wird durch das Entfernen nicht gekündigt. Bestellungen und Zahlungen bleiben erhalten. Bereits heruntergeladene Sicherungen und Exporte bleiben unverändert.
 
+## Wartungsfenster und Spielerzahlen
+
+Ein aktiviertes Wartungsfenster startet den gesamten GSCS-Docker-Container einmal neu. Alle darin laufenden lokalen Gameserver werden dabei getrennt. Nach dem Neustart aktualisiert GSCS Gameserver mit aktivierter Update-Automatik und startet zuvor laufende Server wieder. Manuelle und geplante Spielupdates warten nicht auf einen leeren Server. Unbekannte Hytale-Spielerzahlen werden als unbekannt angezeigt.
+
 ## Updates und Sicherungen
 
 Dienstinstallationen verwenden signierte Updatepakete. Lokale Gameserver und laufende Aufträge vor dem Update beenden. Im Webinterface nach Updates suchen, das Paket vorbereiten und die Zielversion bestätigen. Manuell: **update.ps1 -Latest** bzw. **sudo bash update.sh --latest**. Programmdateien und Datenbank werden gesichert; schlägt der Starttest fehl, versucht der Helfer die vorherige Version samt Datenbank wiederherzustellen.

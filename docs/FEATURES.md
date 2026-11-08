@@ -1,4 +1,4 @@
-# GSCS 0.1.0-alpha.9
+# GSCS 0.1.0-alpha.10
 
 Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlaufzeiten; ein SDK ist nicht erforderlich.
 
@@ -17,7 +17,7 @@ Alpha-Version. Die Pakete enthalten Master, Node und die benötigten Programmlau
 | Systemwechsel | Verschlüsselter Systemexport mit Datenbank und optionalen Dateien, Vorschau vor Import, Rücksicherung sowie verschlüsselter Node-Umzug mit Fortschritt, Abbruch und Rückkehr bei Fehlern. |
 | Hosting | Kundenrollen, Paketkarten, Preis-/Ressourcensnapshots, bestätigte Bestellungen, Bereitstellung, PayPal-Abos und Verlängerungen, Kündigung zum Laufzeitende, Zahlungsbelege und Zahlungsausfallsperren. Stripe und WHMCS sind zusätzlich angebunden. |
 | Zugriff | Rollen und Serverfreigaben, getrennte Startskriptberechtigung, 2FA, Passkeys, OIDC, API-Tokens, Auditprotokoll und SFTPGo-Anbindung. |
-| Automatisierung | Zeitpläne, Wartungsfenster, Auftragswarteschlange, Webhooks, SMTP-/Discord-Meldungen, DNS-/DDoS-Provideradapter. |
+| Automatisierung | Zeitpläne, Wartungsfenster mit vollständigem Docker-Neustart und anschließenden automatischen Spielupdates, Auftragswarteschlange, Webhooks, SMTP-/Discord-Meldungen, DNS-/DDoS-Provideradapter. |
 | Statusseite | Freigegebene Server, Störungs-/Wartungsmeldungen und tägliche Verfügbarkeit. Wartung und fehlende Messungen werden gesondert erfasst. |
 | Lizenz und Updates | Single, Volumen, Hosting mit Kundenlimit und Hosting Pro. Signierte Lizenzfreigaben und Auslieferungen, regelmäßige Lizenzprüfung und Updates mit Datenbank-Rücksicherung. |
 
@@ -42,3 +42,9 @@ Docker-Updates vergleichen die signierten Programmstände auch bei gleicher Vers
 Jeder Node ermittelt seine öffentliche IP im Hintergrund über UPnP oder feste HTTPS-Adressdienste und übermittelt sie mit seinem Status. Die Erkennung öffnet keine Routerports. Manuell eingetragene öffentliche Adressen haben Vorrang. Eine öffentliche IP belegt keine Erreichbarkeit aus dem Internet; Port- und Spielabfragen bleiben davon getrennt.
 
 Die ausgelieferten Webinterface-Dateien verwenden an den Programmstand und Dateiinhalt gebundene URLs. Browser prüfen HTML, JavaScript und CSS erneut, damit Updates keine veraltete Oberfläche weiterverwenden. Der Cache für Spielbilder bleibt erhalten.
+
+Ein aktiviertes Wartungsfenster startet den GSCS-Docker-Container einmal vollständig neu, auch wenn kein Gameserver automatische Updates verwendet. Laufende Aufträge werden vorher abgeschlossen und lokale Gameserver gestoppt. Danach werden Server mit aktivierter Update-Automatik unabhängig von der Spielerzahl aktualisiert. Zuvor laufende Server starten anschließend wieder, auch ohne Watchdog; bewusst gestoppte Server bleiben gestoppt. Ein fehlgeschlagenes Spielupdate wird nicht automatisch durch einen Start übergangen. Ohne Docker führt das Fenster nur die automatischen Spielupdates aus. Auch manuelle und als Zeitplan angelegte Updates warten nicht auf leere Server; der konfigurierte Ankündigungs-Countdown bleibt für unterstützte Spiele erhalten.
+
+Mit Docker-Socket wird ausschließlich der über seine eigene Mount-Namespace bestätigte GSCS-Container neu gestartet. Ohne Socket benötigt der Container die Neustartregel `unless-stopped` oder `always`; Compose und die Unraid-Vorlage enthalten diese Regel. Der Ablauf benötigt das aktualisierte Docker-Image einschließlich der neuen Wartungshelfer. `python3 testing/check-maintenance-container.py --context colima` prüft den Neustart mit einer getrennten PostgreSQL-Testdatenbank.
+
+Bei Hytale ermittelt GSCS die Spielerzahl aus den vollständigen Verbindungsprotokollen des aktuellen Serverprozesses, einschließlich Abmeldungen und fehlgeschlagener Beitritte. Dafür sind keine zusätzlichen Plugins erforderlich. Die QUIC-Abfrage bestätigt weiterhin nur die Erreichbarkeit. Fehlende, unvollständige oder nicht mehr unterstützte Protokolle ergeben eine unbekannte Spielerzahl; die Übersicht zählt diese nicht als null Spieler.

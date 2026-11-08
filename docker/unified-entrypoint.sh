@@ -15,6 +15,8 @@ install -d -o gscs -g gscs -m 0750 "$root"
 for folder in home run secrets;do install -d -o gscs -g gscs -m 0750 "$root/$folder";done
 export HOME=$root/home DISPLAY=:99
 export GSCS_DATA=$root GSCS_ROLE=$role
+# Stable across panel-process restarts; new for every complete container boot.
+export GSCS_CONTAINER_BOOT_ID=$(cat /proc/sys/kernel/random/uuid)
 /opt/gscs/GSCS --prepare-hardware
 if [[ $role == node && -n ${GSCS_AGENT_KEY_FILE:-} ]];then
  [[ -r $GSCS_AGENT_KEY_FILE ]] || { printf 'Node-Schlüsseldatei ist nicht lesbar.\n' >&2;exit 1; }

@@ -8,6 +8,7 @@ on:
         type: string
 permissions:
   contents: write
+  packages: write
 jobs:
   common-image:
     uses: ./.github/workflows/containers.yml

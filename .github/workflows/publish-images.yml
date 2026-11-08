@@ -1,0 +1,48 @@
+name: Publish signed GSCS image channel
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Verified draft release tag
+        required: true
+        type: string
+permissions:
+  contents: read
+  packages: write
+concurrency:
+  group: gscs-publish-images
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ inputs.tag }}
+      IMAGE: ghcr.io/zumbyte-appsolution/gscs
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+      - name: Verify signed release and publish private Alpha channel
+        run: |
+          set -euo pipefail
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-alpha\.[0-9]+$ ]] || exit 2
+          [[ $(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft) = true ]] || exit 2
+          [[ $(gh api /orgs/ZUMBYTE-AppSolution/packages/container/gscs --jq .visibility) = private ]] || exit 2
+          mkdir downloads
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --dir downloads --pattern 'gscs-images.*'
+          openssl dgst -sha256 -verify release-public.pem -signature downloads/gscs-images.sig downloads/gscs-images.json
+          python3 - <<'PY' > image-refs.txt
+          import json,os,re
+          m=json.load(open('downloads/gscs-images.json'))
+          assert m['schemaVersion']==1 and 'v'+m['version']==os.environ['TAG']
+          assert {i['rid'] for i in m['images']}=={'linux-x64','linux-arm64'} and len(m['images'])==2
+          for i in m['images']:
+              assert i['role']=='universal' and re.fullmatch(re.escape(os.environ['IMAGE'])+r'@sha256:[a-f0-9]{64}',i['registryDigest'])
+              print(i['registryDigest'])
+          PY
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+          mapfile -t refs < image-refs.txt
+          docker buildx imagetools create --tag "$IMAGE:${TAG#v}" "${refs[@]}"
+          docker buildx imagetools inspect "$IMAGE:${TAG#v}"
+          docker buildx imagetools create --tag "$IMAGE:alpha" "${refs[@]}"
+          [[ $(gh api /orgs/ZUMBYTE-AppSolution/packages/container/gscs --jq .visibility) = private ]] || exit 2

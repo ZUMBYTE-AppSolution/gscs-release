@@ -92,7 +92,7 @@ Markdown="false"
   <Registry>https://github.com/ZUMBYTE-AppSolution/gscs-release/pkgs/container/gscs</Registry>
   <Network>host</Network>
   <Privileged>false</Privileged>
-  <ExtraParams />
+  <ExtraParams>--restart unless-stopped</ExtraParams>
   <Support>https://github.com/ZUMBYTE-AppSolution/gscs-release/issues</Support>
   <Project>https://github.com/ZUMBYTE-AppSolution/gscs-release</Project>
   <Overview>GSCS mit interner PostgreSQL-Datenbank, SteamCMD, Java und Wine in einem Container. Ersten Administrator und Lizenz im Webinterface einrichten. Ohne Lizenz: ein Gameserver auf localhost. Ein Node verwendet dasselbe Image mit GSCS_ROLE=node und benötigt kein Webinterface und keine Verwaltungsdatenbank.</Overview>
